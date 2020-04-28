@@ -21,6 +21,7 @@ import { HistorylistComponent } from './pages/historylist/historylist.component'
 import { ProductlistComponent } from './pages/productlist/productlist.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { SalesManageComponent } from './pages/sales-manage/sales-manage.component';
+import { MoneyPipe } from './pipe/money.pipe';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { SalesManageComponent } from './pages/sales-manage/sales-manage.componen
       HistorylistComponent,
       ProductlistComponent,
       ProductDetailsComponent,
-      SalesManageComponent
+      SalesManageComponent,
+      MoneyPipe
    ],
    imports: [
       HttpClientModule,

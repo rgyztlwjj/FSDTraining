@@ -7,3 +7,14 @@
 .title-label{
     text-align: center;
   }
+.down-list{
+    width: 50px;
+}
+.down-year{
+    width: 70px;
+}
+.btn-seach{
+    background-color: rgba(0, 0, 0, 0.075);
+    border-color: rgba(0, 0, 0, 0.075);
+    color:black;
+}
