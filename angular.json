@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "eMartProject": {
+    "emartproject": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/eMartProject",
+            "outputPath": "dist/emartproject",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,7 +24,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
             ],
             "scripts": []
           },
@@ -62,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "eMartProject:build"
+            "browserTarget": "emartproject:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "eMartProject:build:production"
+              "browserTarget": "emartproject:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "eMartProject:build"
+            "browserTarget": "emartproject:build"
           }
         },
         "test": {
@@ -110,15 +111,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "eMartProject:serve"
+            "devServerTarget": "emartproject:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "eMartProject:serve:production"
+              "devServerTarget": "emartproject:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "eMartProject"
+    }
+  },
+  "defaultProject": "emartproject",
+  "cli": {
+    "analytics": "c4539dc9-e965-4d9c-ac47-7856b0a97a95"
+  }
 }

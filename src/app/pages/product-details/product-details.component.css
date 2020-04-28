@@ -1,0 +1,19 @@
+.left-div{
+    width: 25%;
+    height: 180px;
+}
+.right-div{
+    width: 72%;
+    height: 180px;
+}
+.title-label{
+    text-align: center;
+  }
+.submit-btn{
+    text-align: center;
+    width: 100px;
+  }
+.img-sty{
+    width: 220px;
+    height: 160px;
+}

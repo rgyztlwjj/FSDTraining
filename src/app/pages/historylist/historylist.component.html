@@ -1,0 +1,30 @@
+<body>
+  <h1 class="offset-4 mb-4 font-weight-normal">Purchase History</h1>
+    <nz-table #rowSelectionTable nzShowSizeChanger [nzData]="listOfData" (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+      <thead>
+        <tr>
+          <th>ItmeInfo</th>
+          <th>Price</th>
+          <th>Date</th>
+          <th>
+            <div class="action-col">View</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of rowSelectionTable.data">
+          <td>{{ data.name }}</td>
+          <td>{{ data.price }}</td>
+          <td>{{ data.date }}</td>
+          <td>
+            <div class="action-col">
+              <button class="btn btn-primary">View</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+    <div>
+      <button type="button" class="btn btn-primary submit-btn offset-5" [routerLink]="['/salesmanage']">Back</button>
+    </div>
+</body>

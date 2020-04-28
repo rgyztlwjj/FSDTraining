@@ -1,0 +1,122 @@
+<h1 class="title-label mb-4 font-weight-normal">Sales Manage</h1>
+<nz-tabset [nzTabPosition]="'top'" [nzType]="'card'">
+  <nz-tab nzTitle="Add Products">
+    <div class="float-left left-div">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Category</span>
+        </div>
+        <!-- <select [(ngModel)]="model">
+          <option *ngFor="let item of list" [value]="item">{{item}}</option>
+        </select> -->
+        <nz-select class="form-control" ngModel="elictronic">
+          <nz-option nzValue="elictronic" nzLabel="Electronic"></nz-option>
+          <nz-option nzValue="128g" nzLabel="128GB"></nz-option>
+          <nz-option nzValue="256g" nzLabel="256GB" nzDisabled></nz-option>
+        </nz-select>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">SubCategory</span>
+        </div>
+        <nz-select class="form-control" ngModel="mobile">
+          <nz-option nzValue="mobile" nzLabel="Mobile"></nz-option>
+          <nz-option nzValue="128g" nzLabel="128GB"></nz-option>
+          <nz-option nzValue="256g" nzLabel="256GB" nzDisabled></nz-option>
+        </nz-select>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Item Name</span>
+        </div>
+        <input type="text" class="form-control" aria-label="name">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Price</span>
+        </div>
+        <input type="text" class="form-control" aria-label="price">
+      </div>
+    </div>
+    <div class="ml-4 float-right right-div">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Color</span>
+        </div>
+        <nz-select class="form-control" ngModel="gold">
+          <nz-option nzValue="black" nzLabel="B"></nz-option>
+          <nz-option nzValue="gray" nzLabel="Gray"></nz-option>
+          <nz-option nzValue="gold" nzLabel="Gold" nzDisabled></nz-option>
+        </nz-select>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Memory</span>
+        </div>
+        <nz-select class="form-control" aria-label="memory" ngModel="128g">
+          <nz-option nzValue="64g" nzLabel="64GB"></nz-option>
+          <nz-option nzValue="128g" nzLabel="128GB"></nz-option>
+          <nz-option nzValue="256g" nzLabel="256GB" nzDisabled></nz-option>
+        </nz-select>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Description 1</span>
+        </div>
+        <input type="text" class="form-control" aria-label="description1">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Description 2</span>
+        </div>
+        <input type="text" class="form-control" aria-label="description2">
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary mt-4 offset-5">Save&Submit</button>
+  </nz-tab>
+  <nz-tab nzTitle=" View&Update Stock ">
+    <nz-table class="mt-4" #rowSelectionTable nzShowSizeChanger [nzData]="listOfData" (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+      <thead>
+        <tr>
+          <th>ItmeInfo</th>
+          <th>Price</th>
+          <th>Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of rowSelectionTable.data; index as productId">
+          <td>
+            {{ data.name }}</td>
+          <td>{{ data.price }}</td>
+          <td>{{ data.stock }}
+            &nbsp;
+            <a class="detail-link float-right" [routerLink]="['/products', productId]">Updates</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-tab>
+  <nz-tab nzTitle=" Reports ">
+    <div>
+      <div class="float-left left-div input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">StartDate</span>
+        </div>
+        <nz-input-number [(ngModel)]="yearValue" [nzMin]="2019" [nzMax]="2030" [nzStep]="1" ></nz-input-number>
+        <nz-input-number [(ngModel)]="monthValue" [nzMin]="1" [nzMax]="12" [nzStep]="1" ></nz-input-number>
+        <nz-input-number [(ngModel)]="dayValue" [nzMin]="1" [nzMax]="31" [nzStep]="1" ></nz-input-number>
+      </div>~
+      <div class="float-right right-div input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">EndDate</span>
+        </div>
+        <nz-input-number [(ngModel)]="yearValue" [nzMin]="2019" [nzMax]="2030" [nzStep]="1" ></nz-input-number>
+        <nz-input-number [(ngModel)]="monthValue" [nzMin]="1" [nzMax]="12" [nzStep]="1" ></nz-input-number>
+        <nz-input-number [(ngModel)]="dayValue" [nzMin]="1" [nzMax]="31" [nzStep]="1" ></nz-input-number>
+      </div>
+     </div>
+  </nz-tab>
+</nz-tabset>

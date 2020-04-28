@@ -1,0 +1,31 @@
+.filter-div{
+    width: 25%;
+}
+.result-div{
+    width: 72%;
+    height: 420px;
+}
+.title-label{
+    text-align: center;
+  }
+nz-select {
+    width: 100%;
+  }
+.display-inner {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+.sub-btn{
+    margin-left:72%;
+}
+.detail-link{
+    color: blue;
+}
+.submit-btn{
+    text-align: center;
+    width: 100px;
+  }
+  .img-sty{
+    width: 44px;
+    height: 32px;
+  }

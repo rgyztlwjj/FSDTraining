@@ -1,0 +1,12 @@
+<body>
+  <h1 class="title-label col-sm-8 offset-sm-2 mt-4 mb-2 font-weight-normal">Search</h1>
+  <div class="div-signin offset-sm-2 col-sm-8">
+      <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+        <input type="text" nz-input placeholder="input search products" />
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+      </ng-template>
+  </div>
+</body>
+

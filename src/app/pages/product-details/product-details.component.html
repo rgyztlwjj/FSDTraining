@@ -1,0 +1,24 @@
+
+  <h1 class="title-label mb-4 font-weight-normal">Item Specifications</h1>
+  <div *ngIf="product">
+    <div class="left-div float-left mt-4">
+      <img src="/assets/img/iPhone11.jpg" class="img-sty">
+    </div>
+    <div class="ml-2 mt-4 right-div float-right">
+    <h3>{{ product.name }}</h3>
+    <h4>{{ product.price | currency}}</h4>
+    <p>{{ product.description }}</p>
+    <nz-select ngModel="gold">
+      <nz-option nzValue="black" nzLabel="B"></nz-option>
+      <nz-option nzValue="gray" nzLabel="Gray"></nz-option>
+      <nz-option nzValue="gold" nzLabel="Gold" nzDisabled></nz-option>
+    </nz-select>
+    <nz-select class="ml-2" ngModel="128g">
+      <nz-option nzValue="64g" nzLabel="64GB"></nz-option>
+      <nz-option nzValue="128g" nzLabel="128GB"></nz-option>
+      <nz-option nzValue="256g" nzLabel="256GB" nzDisabled></nz-option>
+    </nz-select>
+    </div>
+    <button type="button" class="btn btn-primary submit-btn mt-4 offset-5" [routerLink]="['/productlist']">Back</button>
+    <button class="btn btn-primary submit-btn mt-4 ml-1" (click)="addToCart(product)">Buy</button>
+  </div> 

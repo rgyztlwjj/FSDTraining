@@ -1,0 +1,48 @@
+<div>
+  <h1 class="title-label mb-4 font-weight-normal">Item Search Results</h1>
+  <div class="filter-div float-left mt-4">
+    <p class="mt-4 mb-4 font-weight-normal display-inner">Filter</p>
+    <p>StartPrice</p>
+    <nz-select nzMode="tags" nzPlaceHolder="Tag Mode" [(ngModel)]="listOfTagOptions">
+      <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+    </nz-select>
+
+    <p class="mt-4">EndPrice</p>
+    <nz-select nzMode="tags" nzPlaceHolder="Tag Mode" [(ngModel)]="listOfTagOptions">
+      <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+    </nz-select>
+
+  <p class="mt-4">Manufacturer</p>
+    <nz-select nzMode="tags" nzPlaceHolder="Tag Mode" [(ngModel)]="listOfTagOptions">
+      <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+    </nz-select>
+
+  <button class="btn btn-primary mt-4 sub-btn" >Filter</button>
+  </div>
+  <div class="ml-2 mt-4 result-div float-right">
+    <nz-table class="mt-4" #rowSelectionTable nzShowSizeChanger [nzData]="listOfData" (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+      <thead>
+        <tr>
+          <th>ItmeInfo</th>
+          <th>Price</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of rowSelectionTable.data; index as productId">
+          <td>
+            <img src="/assets/img/iPhone11.jpg" class="img-sty">
+            {{ data.name }}</td>
+          <td>{{ data.price }}</td>
+          <td>{{ data.description }}
+            &nbsp;
+    text-align: center;
+            <a class="detail-link float-right" [routerLink]="['/products', productId]">Details</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+    <button type="button" class="btn btn-primary submit-btn mt-4 offset-5">Back</button>
+  </div>
+</div>
+
