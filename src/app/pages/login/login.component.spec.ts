@@ -1,28 +1,40 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+// /* tslint:disable:no-unused-variable */
+// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// import { By } from '@angular/platform-browser';
+// import { DebugElement } from '@angular/core';
 
-import { LoginComponent } from './login.component';
+// import { LoginComponent } from './login.component';
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+// interface value {
+//   name: string,
+//   password:string
+// }
+// this.value=[
+//   {
+//     name:'user1',
+//     password:'123456'
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
-    })
-    .compileComponents();
-  }));
+//   }
+// ]
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+// describe('LoginComponent', () => {
+//   let component: LoginComponent;
+//   let fixture: ComponentFixture<LoginComponent>;
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   beforeEach(async(() => {
+//     TestBed.configureTestingModule({
+//       declarations: [ LoginComponent ]
+//     })
+//     .compileComponents();
+//   }));
+
+//   beforeEach(() => {
+//     fixture = TestBed.createComponent(LoginComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
+
+//   it('should alter user not null', () => {
+//     expect(component.validInput(this.value)).toBeTruthy();
+//   });
+// });

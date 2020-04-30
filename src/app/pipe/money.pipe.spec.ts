@@ -6,6 +6,6 @@ import { MoneyPipe } from './money.pipe';
 describe('Pipe: Moneye', () => {
   it('create an instance', () => {
     let pipe = new MoneyPipe();
-    expect(pipe).toBeTruthy();
+    expect(pipe.transform).toBeTruthy;
   });
 });
