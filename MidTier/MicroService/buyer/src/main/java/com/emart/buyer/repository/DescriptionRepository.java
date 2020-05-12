@@ -9,7 +9,7 @@ import com.emart.buyer.entity.DescriptionEntity;
 import com.emart.buyer.entity.DiscountsEntity;
 
 @Repository
-public interface DescriptionRepository extends JpaRepository<DiscountsEntity, Integer>{
+public interface DescriptionRepository extends JpaRepository<DescriptionEntity, Integer>{
 
     public List<DescriptionEntity> findByItemId(Integer itemId);
 

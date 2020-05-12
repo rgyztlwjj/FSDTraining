@@ -9,7 +9,7 @@ import com.emart.buyer.entity.CartEntity;
 import com.emart.buyer.entity.PurchasehistoryEntity;
 
 @Repository
-public interface PurchaseHistoryRepository extends JpaRepository<CartEntity, Integer>{
+public interface PurchaseHistoryRepository extends JpaRepository<PurchasehistoryEntity, Integer>{
 
     public List<PurchasehistoryEntity> findByBuyerId(String buyerId);
 
