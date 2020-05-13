@@ -30,11 +30,12 @@ public class StockServiceImpl implements StockService {
 	private ItemsRepository itemsrepository;
 
 	/**
-	 * 
+	 * Get item report by userId
+	 * @param userId
+	 * @return List<ReportModel>
 	 */
 	@Override
 	public List<StockModel> getStock(Integer userId) {
-		
 
 		List<ItemsEntity> lstEntity = itemsrepository.findBySellerId(userId);
 		
@@ -53,9 +54,9 @@ public class StockServiceImpl implements StockService {
 
 
 	/**
-	 * 
+	 * convert entity to model
 	 * @param entity
-	 * @return
+	 * @return ReportModel
 	 */
 	private StockModel conver(ItemsEntity entity) {
 		StockModel stockmodel= new StockModel();

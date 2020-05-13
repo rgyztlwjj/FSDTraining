@@ -8,10 +8,10 @@
         <version>2.2.7.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.emart</groupId>
-    <artifactId>buyer</artifactId>
+    <groupId>com.emart.buyer</groupId>
+    <artifactId>buyerms</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>buyer</name>
+    <name>buyerms</name>
     <description>Buyer Microservice</description>
 
     <properties>

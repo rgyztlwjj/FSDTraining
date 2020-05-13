@@ -41,9 +41,9 @@ public class UsermsController {
     }
 	
 	/**
-	 * 
+	 * Sign up as a buyer
 	 * @param buyer
-	 * @return
+	 * @return BuyerModel
 	 */
 	@PostMapping("/signinbuyer")
 	public ResponseEntity<BuyerModel> signinAsBuyer(@RequestBody BuyerModel buyer) {
@@ -57,9 +57,9 @@ public class UsermsController {
 	
 	
 	/**
-	 * 
+	 * Sign up as a seller
 	 * @param seller
-	 * @return
+	 * @return SellerModel
 	 */
 	@PostMapping("/signinseller")
 	public ResponseEntity<SellerModel> signinAsBuyer(@RequestBody SellerModel seller) {

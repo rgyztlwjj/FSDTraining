@@ -25,9 +25,14 @@ public class ReportServiceImpl implements ReportService {
 	private ItemsRepository itemsrepository;
 	
 	
+	/**
+	 * Get item report by userId
+	 * @param userId
+	 * @return List<ReportModel>
+	 * 
+	 */
 	@Override
 	public List<ReportModel> getReport(Integer userId) {
-		
 
 		List<ItemsEntity> lstEntity = itemsrepository.findBySellerId(userId);
 		
@@ -38,14 +43,19 @@ public class ReportServiceImpl implements ReportService {
 		
 		List<ReportModel> lstModel = new ArrayList<ReportModel>(lstEntity.size());
 
-		lstEntity.stream().forEach(entity -> lstModel.add(conver(entity)));
+		lstEntity.stream().forEach(entity -> lstModel.add(convert(entity)));
 		
 		return lstModel;		
 	}
 
 
-
-	private ReportModel conver(ItemsEntity entity) {
+	/**
+	 * convert entity to model
+	 * @param entity
+	 * @return ReportModel
+	 * 
+	 */
+	private ReportModel convert(ItemsEntity entity) {
 		ReportModel reportModel= new ReportModel();
 		
 		BeanUtils.copyProperties(entity, reportModel);
