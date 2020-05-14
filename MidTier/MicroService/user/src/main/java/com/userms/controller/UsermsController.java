@@ -24,7 +24,7 @@ public class UsermsController {
 	@Autowired
 	private JwtUtil jwt;
     
-	@PostMapping
+	@PostMapping("/login")
     public ResponseEntity<UserModel> login(@RequestBody UserModel user) {
 		
 		int userId = userService.getUserId(user);
@@ -41,9 +41,9 @@ public class UsermsController {
     }
 	
 	/**
-	 * Sign up as a buyer
+	 * 
 	 * @param buyer
-	 * @return BuyerModel
+	 * @return
 	 */
 	@PostMapping("/signinbuyer")
 	public ResponseEntity<BuyerModel> signinAsBuyer(@RequestBody BuyerModel buyer) {
@@ -57,9 +57,9 @@ public class UsermsController {
 	
 	
 	/**
-	 * Sign up as a seller
+	 * 
 	 * @param seller
-	 * @return SellerModel
+	 * @return
 	 */
 	@PostMapping("/signinseller")
 	public ResponseEntity<SellerModel> signinAsBuyer(@RequestBody SellerModel seller) {
