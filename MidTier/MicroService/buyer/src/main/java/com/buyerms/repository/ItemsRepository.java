@@ -16,7 +16,7 @@ public interface ItemsRepository extends JpaRepository<ItemsEntity, Integer>{
 	 * @param number
 	 * @return
 	 */
-	@Modifying
-	@Query(value="update items set stock_number = stock_number - :num, sales_number = sales_number + :num where id = :id and stock_number >= :num")
-	public int updateStock(@Param("id") Integer id, @Param("num") Integer number);
+//	@Modifying
+//	@Query(value="update items set stock_number = stock_number - :num, sales_number = sales_number + :num where id = :id and stock_number >= :num")
+//	public int updateStock(@Param("id") Integer id, @Param("num") Integer number);
 }

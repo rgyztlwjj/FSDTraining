@@ -1,13 +1,13 @@
-package com.emart.buyer;
+package com.buyerms;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BuyermsApplicationTests {
+class BuyerApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+	@Test
+	void contextLoads() {
+	}
 
 }

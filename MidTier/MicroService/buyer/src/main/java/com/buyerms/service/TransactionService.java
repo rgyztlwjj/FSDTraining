@@ -11,7 +11,7 @@ public interface TransactionService {
      * @param models TransactionModel[]
      * @return true:checkout sucessful, false:checkout failure
      */
-    public boolean checkout(TransactionModel[] models);
+//    public boolean checkout(TransactionModel[] models);
 
     /**
      * Get discount by code.

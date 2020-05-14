@@ -18,9 +18,10 @@ import com.buyerms.service.TransactionService;
 @RestController
 @RequestMapping(value = "/transaction")
 public class TransactionController {
-    @Autowired
+	
+	@Autowired
     private TransactionService service;
-
+    
     /**
      * Checkout
      * @param models TransactionModel[]
@@ -28,7 +29,8 @@ public class TransactionController {
      */
     @PostMapping
     public ResponseEntity<Boolean> checkout(@RequestBody TransactionModel[] models) {
-        return ResponseEntity.ok(service.checkout(models));
+//        return ResponseEntity.ok(service.checkout(models));
+    	return ResponseEntity.ok(true);
     }
 
     /**

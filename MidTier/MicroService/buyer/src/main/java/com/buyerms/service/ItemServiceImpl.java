@@ -42,6 +42,7 @@ public class ItemServiceImpl implements ItemService {
      * @param context
      * @return List<ItemModel>
      */
+    @Override
     public List<ItemModel> search(String context) {
         List<ItemViewEntity> lstEntity = itemViewRepositor.findBySearchContextLike("%" + context + "%");
 
@@ -77,6 +78,7 @@ public class ItemServiceImpl implements ItemService {
      * @param id
      * @return ItemDetailModel
      */
+    @Override
     public ItemDetailModel getItemDetail(Integer id){
         ItemDetailModel model = null;
 
