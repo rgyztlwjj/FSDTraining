@@ -31,8 +31,6 @@ public class ItemServiceImpl implements ItemService {
 
 	/**
 	 * Add a new item
-	 * @param additem
-	 * @return boolean true:saved false:not saved
 	 * 
 	 */
 	@Override
@@ -51,10 +49,6 @@ public class ItemServiceImpl implements ItemService {
 		return true;
 	}
 
-	/**
-	 * Get Manufacture pulldown list
-	 * @return List<ManufacturModel> 
-	 */
 	@Override
 	public List<ManufacturModel> getpulldownlistManu() {
 		ManufacturModel model = new ManufacturModel();
@@ -67,17 +61,12 @@ public class ItemServiceImpl implements ItemService {
 
 		List<ManufacturModel> lstModel = new ArrayList<ManufacturModel>(listManufacturEntities.size());
 
-		listManufacturEntities.stream().forEach(entity -> lstModel.add(convert(entity, model)));
+		listManufacturEntities.stream().forEach(entity -> lstModel.add(conver(entity, model)));
 
 		return lstModel;
 
 	}
 
-	
-	/**
-	 * Get Category pulldown list
-	 * @return List<CategoryModel> 
-	 */
 	@Override
 	public List<CategoryModel> getpulldownlistCat() {
 
@@ -91,17 +80,12 @@ public class ItemServiceImpl implements ItemService {
 
 		List<CategoryModel> lstModel = new ArrayList<CategoryModel>(listcategoriEntities.size());
 
-		listcategoriEntities.stream().forEach(entity -> lstModel.add(convert(entity, model)));
+		listcategoriEntities.stream().forEach(entity -> lstModel.add(conver(entity, model)));
 
 		return lstModel;
 
 	}
 
-	
-	/**
-	 * Get SubCategory pulldown list
-	 * @return List<SubCategoryModel> 
-	 */
 	@Override
 	public List<SubCategoryModel> getpulldownlistSubCat() {
 		SubCategoryModel model = new SubCategoryModel();
@@ -114,27 +98,17 @@ public class ItemServiceImpl implements ItemService {
 
 		List<SubCategoryModel> lstModel = new ArrayList<SubCategoryModel>(listsubcategoriEntities.size());
 
-		listsubcategoriEntities.stream().forEach(entity -> lstModel.add(convert(entity, model)));
+		listsubcategoriEntities.stream().forEach(entity -> lstModel.add(conver(entity, model)));
 
 		return lstModel;
 	}
 
-	
-	/**
-	 * Convert entity to model
-	 * @return SubCategoryModel
-	 */
-	private SubCategoryModel convert(SubCategoryEntity entity, SubCategoryModel model) {
+	private SubCategoryModel conver(SubCategoryEntity entity, SubCategoryModel model) {
 		BeanUtils.copyProperties(entity, model);
 		return model;
 	}
 
-	
-	/**
-	 * Convert entity to model
-	 * @return ManufacturModel
-	 */
-	private ManufacturModel convert(ManufacturEntity entity, ManufacturModel model) {
+	private ManufacturModel conver(ManufacturEntity entity, ManufacturModel model) {
 
 		BeanUtils.copyProperties(entity, model);
 
@@ -142,12 +116,7 @@ public class ItemServiceImpl implements ItemService {
 
 	}
 
-	
-	/**
-	 * Convert entity to model
-	 * @return CategoryModel
-	 */
-	private CategoryModel convert(CategoryEntity entity, CategoryModel model) {
+	private CategoryModel conver(CategoryEntity entity, CategoryModel model) {
 
 		BeanUtils.copyProperties(entity, model);
 		return model;

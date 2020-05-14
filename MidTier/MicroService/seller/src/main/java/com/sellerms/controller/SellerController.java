@@ -66,7 +66,7 @@ public class SellerController {
     }
 	
 	
-	@GetMapping("/{userId}")
+	@GetMapping("/report/{userId}")
     public ResponseEntity<List<ReportModel>> getReport(@PathVariable Integer userId) {
 		
 		List<ReportModel> lst = reportservice.getReport(userId);
@@ -78,11 +78,7 @@ public class SellerController {
 		return ResponseEntity.ok(lst);
     }
 	
-	/**
-	 * Get Stocks 
-	 * @param userId
-	 * @return List<StockModel>
-	 */
+	
 	@GetMapping("/stock")
     public ResponseEntity<List<StockModel>> getStocks(@PathVariable Integer userId) {
 		
@@ -95,12 +91,6 @@ public class SellerController {
 		return ResponseEntity.ok(lst);
     }
 	
-	
-	/**
-	 * Update Stock
-	 * @param model
-	 * @return StockModel
-	 */
 	@PostMapping("/updatestock")
     public ResponseEntity<StockModel> andItem(@RequestBody StockModel model) {
 		
@@ -114,11 +104,6 @@ public class SellerController {
 		
     }
 	
-	/**
-	 * Add a new Item
-	 * @param item AdditemModel
-	 * @return AdditemModel
-	 */
 	@PostMapping("/additem")
     public ResponseEntity<AdditemModel> andItem(@RequestBody AdditemModel item) {
 		
