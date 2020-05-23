@@ -1,0 +1,72 @@
+<form class="needs-validation"  id="myForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="float-left left-div ">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Category</span>
+      </div>
+      <nz-select ngModel  [(ngModel)]="categoryvalue" name="categoryvalue" class="form-control" id="category" (ngModelChange)="subcateChange($event)">
+        <nz-option nzValue="" nzLabel="ALL"></nz-option>
+        <nz-option *ngFor="let item of categorys" [nzValue]="item.id" [nzLabel]="item.categoryName"></nz-option>
+      </nz-select>
+
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">SubCategory</span>
+      </div>
+      <nz-select ngModel [(ngModel)]="subcategoryValue" name="subcategoryValue" class="form-control" id="subcategoryValue">
+        <nz-option nzValue="" nzLabel="ALL"></nz-option>
+        <nz-option *ngFor="let item of selectsubs" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+      </nz-select>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Manufacturer</span>
+      </div>
+      <nz-select ngModel [(ngModel)]="manufacturersValue"  name="manufacturersValue" class="form-control" id="manufacturersValue">
+        <nz-option nzValue="" nzLabel="ALL"></nz-option>
+        <nz-option *ngFor="let item of manufacturers" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+      </nz-select>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Item Name</span>
+      </div>
+      <input ngModel name="itemname" type="text" [(ngModel)]="itemname"  class="form-control" >
+    </div>
+
+  </div>
+  <div class="float-right right-div">
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Price</span>
+      </div>
+      <input ngModel name="price" type="text" [(ngModel)]="price"  class="form-control">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Stock</span>
+      </div>
+        <input ngModel name="stock" type="text" [(ngModel)]="stock"  class="form-control" >
+    </div>
+
+    <div class="input-group mb-3">
+      <!-- <div class="input-group-prepend">
+        <span class="input-group-text">Description 1</span>
+      </div>
+      <input type="text" class="form-control" aria-label="description1">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Description 2</span>
+      </div>
+      <input type="text" class="form-control" aria-label="description2"> -->
+      <!-- <app-upload-picture></app-upload-picture> -->
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mt-4 offset-5">Save&Submit</button>
+
+  </form>

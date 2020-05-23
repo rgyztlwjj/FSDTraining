@@ -1,0 +1,38 @@
+<div>
+  <div class="float-left left-div input-group mb-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text">StartDate</span>
+    </div>
+    <nz-input-number class="down-year"[(ngModel)]="yearValuestr" [nzMin]="2019" [nzMax]="2030" [nzStep]="1" ></nz-input-number>
+    <nz-input-number class="down-list" [(ngModel)]="monthValuestr" [nzMin]="1" [nzMax]="12" [nzStep]="1" ></nz-input-number>
+    <nz-input-number class="down-list" [(ngModel)]="dayValuestr" [nzMin]="1" [nzMax]="31" [nzStep]="1" ></nz-input-number>
+  </div>
+  <div class="float-right right-div input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">EndDate</span>
+    </div>
+    <nz-input-number class="down-year" [(ngModel)]="yearValue" [nzMin]="2019" [nzMax]="2030" [nzStep]="1" ></nz-input-number>
+    <nz-input-number class="down-list" [(ngModel)]="monthValue" [nzMin]="1" [nzMax]="12" [nzStep]="1" ></nz-input-number>
+    <nz-input-number class="down-list" [(ngModel)]="dayValue" [nzMin]="1" [nzMax]="31" [nzStep]="1" ></nz-input-number>
+    <button type="button" class="btn btn-primary btn-seach ml-1">Search</button>
+  </div>
+   <table class="mt-4 table table-striped" data-toggle="table">
+    <thead>
+      <tr>
+        <th>ItmeInfo</th>
+        <th>ItemProrperty</th>
+        <th>Sold</th>
+        <th>Stock</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of listOfreport; index as productId">
+        <td>
+          {{ data.name }}</td>
+        <td>{{ data.property }}</td>
+        <td>{{ data.sold }}</td>
+        <td>{{ data.stock }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

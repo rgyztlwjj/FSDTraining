@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './app.component';
@@ -21,7 +23,13 @@ import { HistorylistComponent } from './pages/historylist/historylist.component'
 import { ProductlistComponent } from './pages/productlist/productlist.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { SalesManageComponent } from './pages/sales-manage/sales-manage.component';
+import { AddProductComponent } from './pages/sales-manage/add-product/add-product.component';
+import { ManageStockComponent } from './pages/sales-manage/manage-stock/manage-stock.component';
+import { ReportsComponent } from './pages/sales-manage/reports/reports.component';
+import { UploadPictureComponent }from './pages/sales-manage/upload-picture/upload-picture.component';
 import { MoneyPipe } from './pipe/money.pipe';
+import {JwtInterceptor} from './interceptor/jwt.interceptor';
+import { UserService } from './services/user.service'
 
 
 @NgModule({
@@ -38,9 +46,14 @@ import { MoneyPipe } from './pipe/money.pipe';
       ProductlistComponent,
       ProductDetailsComponent,
       SalesManageComponent,
-      MoneyPipe
+      MoneyPipe,
+      AddProductComponent,
+      ManageStockComponent,
+      ReportsComponent,
+      UploadPictureComponent
    ],
    imports: [
+      CommonModule,
       HttpClientModule,
       NgbModule,
       FormsModule,
@@ -48,11 +61,16 @@ import { MoneyPipe } from './pipe/money.pipe';
       NgZorroAntdModule,
       NzIconModule,
       BrowserModule,
-      AppRoutingModule
+      AppRoutingModule,
+      BrowserAnimationsModule
    ],
-   providers: [],
+   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+      UserService],
    bootstrap: [
       AppComponent
    ]
+ 
 })
-export class AppModule { }
+export class AppModule {
+
+ }

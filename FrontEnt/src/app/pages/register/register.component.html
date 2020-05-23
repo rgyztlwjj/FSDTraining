@@ -1,74 +1,82 @@
-<body>
-  <!--  通过class的形式，注入bootstrap的css样式   -->
-  <!--  通过col-xx-xx的形式，注入bootstrap的网格布局样式，控制相对宽度（bootstrap4以上通过flexbox实现） -->
-  <!--  通过offset-xx-xx 控制相对偏移量 -->
+<div nz-row nzJustify="center" nzAlign="top">
+    <div nz-col nzSpan="12">
   <h1 class="title-label col-sm-9 offset-sm-2 mb-3 font-weight-normal">Register</h1>
-  <form id="myForm" class="col-sm-9 offset-sm-2 col-12" [formGroup]="validateForm" (ngSubmit)="submitForm(validateForm)">
-      <div class="form-group form-row">
-          <label class="col-form-label col-3">User name</label>
-          <div class="col-9">
-              <input class="form-control col-12" name="name" type="text" />
-          </div>
-      </div>
-      <div class="form-group form-row">
-          <label class="col-form-label col-3">Password</label>
-          <div class="col-9">
-              <input class="form-control col-12" name="password" type="password" />
-          </div>
-      </div>
-      <div class="form-group form-row">
-        <label class="col-form-label col-3">Confirm password</label>
-        <div class="col-9">
-            <input class="form-control col-12" name="confirm-assword" type="bonfirm-assword" />
-        </div>
-    </div>
-      <div class="form-group form-row">
-          <label class="col-form-label col-3">Tel.</label>
-          <div class="col-9">
-              <input class="form-control col-12" name="cellphone" type="text" />
-          </div>
-      </div>
-      <div class="form-group form-row">
-          <label class="col-form-label col-3">E-mail</label>
-          <div class="col-9">
-              <input class="form-control col-12" name="e-mail" type="text" />
-          </div>
-      </div>
-      <!--    定义bootstrap alert插件框    -->
-      <!-- <div id="result" class="alert alert-danger">
+  <p *ngFor="let alert of alerts">
+    <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
+  </p>
+  <form nz-form id="myForm" [formGroup]="validateForm" (ngSubmit)="submitForm()" style="width: 100%;">
+    <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="username" nzRequired >Username</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your username!">
+              <input nz-input ngModel formControlName="username" [(ngModel)]="username" type="text" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item >
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="email" nzRequired>E-mail</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your Email!">
+            <input nz-input ngModel formControlName="email" [(ngModel)]="email" type="text" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item >
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="mobilePhone" nzRequired>Tel.</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your mobilePhone!">
+            <input nz-input ngModel formControlName="mobilePhone" [(ngModel)]="mobilePhone"  type="text" />
+        </nz-form-control>
+    </nz-form-item >
+    <nz-form-item *ngIf="isshow" >
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="companyname">Company_name</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your companyname!">
+            <input nz-input ngModel formControlName="companyname" [(ngModel)]="companyname"  type="text" />
+        </nz-form-control>
+    </nz-form-item >
+    <nz-form-item *ngIf="isshow" >
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="GSTIN">GSTIN</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your GSTIN!">
+            <input nz-input ngModel formControlName="GSTIN" [(ngModel)]="GSTIN"  type="text" />
+        </nz-form-control>
+    </nz-form-item >
+    <nz-form-item *ngIf="isshow" >
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="brief">Brief</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your brief!">
+            <input nz-input ngModel formControlName="brief" [(ngModel)]="brief"  type="text" />
+        </nz-form-control>
+    </nz-form-item >
+    <nz-form-item *ngIf="isshow" >
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="postaladdress">Postal_address</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your postaladdress!">
+            <input nz-input ngModel formControlName="postaladdress" [(ngModel)]="postaladdress"  type="text" />
+        </nz-form-control>
+     </nz-form-item >
+    <nz-form-item *ngIf="isshow" >
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="website">Website</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24"  nzErrorTip="Please input your website!">
+            <input nz-input ngModel formControlName="website" [(ngModel)]="website"  type="text" />
+        </nz-form-control>
+    </nz-form-item >
+    <nz-form-item >
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="password">Password</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
+              <input nz-input ngModel formControlName="password" [(ngModel)]="password" type="password" />
+        </nz-form-control>
+    </nz-form-item >
+    <nz-form-item >
+        <nz-form-label [nzSm]="8" [nzXs]="24"  nzRequired nzFor="confirmPassword">Confirm password</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your confirmPassword!">
+            <input nz-input name="confirmPassword" formControlName="confirmPassword" [(ngModel)]="confirmPassword"  type="bonfirm-assword" />
+            <ng-template #errorTpl let-control>
+                <ng-container *ngIf="control.isok('required')">
+                    Please confirm your password!
+                </ng-container>
+                <ng-container *ngIf="control.isok('confirm')">
+                    Different passwords in twice time!
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item >
 
-      </div> -->
       <div class="form-group form-row operate">
           <button class="btn btn-primary submit-btn" type="submit">Submit</button>
       </div>
   </form>
- 
-  <script>
-      // var form = document.querySelector('#myForm');
-      // var result = document.querySelector('#result');
-      // form.addEventListener('submit', function(e){
-      //     if(!document.querySelector('[name=password]').value){
-      //         result.style.display = 'block';
-      //         result.innerHTML = '密码为空';
-      //     }else{
-      //         result.style.display = 'none';
-      //
-      //     }
-      //     e.preventDefault();
-      // });
-      /*通过jQuery语法重写上面代码*/
-      var form = $('#myForm');
-      var result = $('#result');
-  // '' null undefined  flase
-      form.submit(function (e) {
-          if(!$('[name=password]').val()){
-              // 不推荐在生产项目中写超过3个以上的链式调用
-              result.css('display', 'block' ).text('密码为空');
-          }else{
-              result.css('display', 'none' )
-          }
-          e.preventDefault();
-      })
-
-  </script>
-</body> 
+</div>
+</div>

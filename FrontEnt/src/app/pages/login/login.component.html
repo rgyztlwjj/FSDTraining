@@ -1,25 +1,25 @@
 <div class="div-signin">
-  <form class="form-signin" #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value)" novalidate>
+  <form class="form-signin" #myForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
     <p *ngFor="let alert of alerts">
       <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
     </p>
     <label for="inputUsername" class="sr-only">User name</label>
-    <input ngModel name="name" id="inputUsername" class="form-control" placeholder="UserName" type="text">
+    <input ngModel name="username" id="inputUsername" [(ngModel)]="username" class="form-control" placeholder="UserName" type="text">
 
     <label for="inputPassword" class="sr-only">Password</label>
-    <input ngModel name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" >
-
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember Me
-      </label>
-    </div>
+    <input ngModel name="password" type="password" id="inputPassword" [(ngModel)]="password"  class="form-control" placeholder="Password" >
     <p>
-      <button class="btn btn-primary mr-2 mb-3" type="submit" [routerLink]="['/search']">Sign in</button>
-      <button class="btn btn-primary ml-2 mb-3" type="clear">Clear </button>
+      <label>
+      <input ngModel type="radio" name="role" value="1" [(ngModel)]="role" > Buyer
+      <input ngModel type="radio" name="role" value="2"[(ngModel)]="role" > Seller
+      </label>
+    </p>
+    <p>
+      <button class="btn btn-primary mr-2 mb-3" type="submit" >Sign in</button  ><button
+         class="btn btn-primary ml-2 mb-3" type="clear">Clear </button>
   </p>
-    <a type="link" [routerLink]="['/register']">Register Now.</a>
+    <a  type="link" [routerLink]="['/register']"  [queryParams]="{role:this.role}">Register Now.</a>
   </form>
 </div>

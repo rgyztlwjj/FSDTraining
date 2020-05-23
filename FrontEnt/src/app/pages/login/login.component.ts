@@ -24,46 +24,81 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.role = "1";
   }
 
-  /* 登录操作 */
-  onSubmit(value: any) {
-    if (this.validInput(value)) {
-      this.userService.postSignIn(value).subscribe(
-        data => {
-          console.log(JSON.stringify(data));
-          const info: any = data;
-          if (200 === info.code) {
-              console.log('登录成功，调转详情页');
-              this.router.navigate(['/search']);
-          } else {
-            console.log('登录失败，弹出MSG');
-            this.alerts.push({type : 'danger', message: 'username or password error!'});
+  username: string;
+  password: string;
+  role: string
+  /* login */
+  onSubmit() {
+    console.info("uername=" + this.username);
+    console.info("password=" + this.password);
 
+    let usr ={
+      username:this.username,
+      password:this.password,
+      role :this.role
+    }
+    if (this.validInput()) {
+      this.userService.postSignIn(usr).subscribe(
+        data => {
+
+          console.log("backg"+data.toString);
+          console.log(JSON.stringify(data));
+          const info: any =  data;
+
+          alert(info.token)
+          if(info.token){
+            window.sessionStorage.setItem('token', info.token);
+            window.sessionStorage.setItem('role', this.role);
+            window.sessionStorage.setItem('id', info.id);
+
+            if ("1" === info.role) {
+              console.log('buyer in');
+              this.router.navigate(['/search']);
+          } else if ("2" === info.role){
+            console.log('seller in');
+            this.router.navigate(['/salesmanage'],{queryParams:{Id:info.id}});
+            }
           }
+          else{
+            this.alerts.push({type : 'danger', message: 'username or password error!'});
+          }
+        },
+        res => {
+          const response: any = res;
+          console.log(response.status);
+          this.alerts.push({type : 'danger', message: 'username or password error!'});
         }
       );
     }
   }
-  /* 验证输入项 */
-  validInput(value: any): boolean {
+  /* valid input data */
+  validInput(): boolean {
     this.reset();
-    if (!value.name) {
+    if (!this.username) {
       this.alerts.push({type : 'danger', message: 'username required!'});
       return false;
     }
 
-    if (!value.password) {
+    if (!this.password) {
       this.alerts.push({type : 'danger', message: 'password required!'});
       return false;
     }
 
-    if (value.password.length < 6) {
+    if (this.password.length < 6) {
       this.alerts.push({type : 'danger', message: 'password length must be greater than 6!'});
+      return false;
+    }
+
+    if (!this.role) {
+      this.alerts.push({type : 'danger', message: 'role required'});
       return false;
     }
     return true;
   }
+  
 
   close(alert: Alert) {
     this.alerts.splice(this.alerts.indexOf(alert), 1);
@@ -72,5 +107,5 @@ export class LoginComponent implements OnInit {
   reset() {
     this.alerts = Array.from(ALERTS);
   }
-
+      
 }
