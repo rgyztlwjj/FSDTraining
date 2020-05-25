@@ -2,47 +2,80 @@
   <h1 class="title-label mb-4 font-weight-normal">Item Search Results</h1>
   <div class="filter-div float-left mt-4">
     <p class="mt-4 mb-4 font-weight-normal display-inner">Filter</p>
-    <p>StartPrice</p>
-    <nz-select nzMode="tags" nzPlaceHolder="Tag Mode" [(ngModel)]="listOfTagOptions">
-      <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
-    </nz-select>
-
-    <p class="mt-4">EndPrice</p>
-    <nz-select nzMode="tags" nzPlaceHolder="Tag Mode" [(ngModel)]="listOfTagOptions">
-      <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
-    </nz-select>
-
-  <p class="mt-4">Manufacturer</p>
-    <nz-select nzMode="tags" nzPlaceHolder="Tag Mode" [(ngModel)]="listOfTagOptions">
-      <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
-    </nz-select>
-
-  <button class="btn btn-primary mt-4 sub-btn" >Filter</button>
+    <form class="needs-validation"  #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value)" novalidate>
+        <!--    Start Price    -->
+        <div class="row">
+          <div class="col-md-10 mb-3">
+            <label for="startPrice">Start Price</label>
+            <div class="input-group">
+              <input ngModel name="startPrice" type="number" class="form-control" id="startPrice" placeholder="Start Price">
+              <div class="input-group-append">
+                <span class="input-group-text">￥</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--    End Price    -->
+        <div class="row">
+          <div class="col-md-10 mb-3">
+            <label for="endPrice">End Price</label>
+            <div class="input-group">
+              <input ngModel name="endPrice" type="number" class="form-control" id="endPrice" placeholder="End Price">
+              <div class="input-group-append">
+                <span class="input-group-text">￥</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10 mb-3">
+            <label for="manufacturer">Manufacturer</label>
+            <select ngModel name="manufacturer" class="custom-select d-block w-100" id="manufacturer">
+              <option value="">ALL</option>
+              <option *ngFor="let item of manufacturers" [value]="item.id">{{ item.name }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10 mb-3">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Search</button>
+          </div>
+        </div>
+</form>
   </div>
   <div class="ml-2 mt-4 result-div float-right">
-    <nz-table class="mt-4" #rowSelectionTable nzShowSizeChanger [nzData]="listOfData" (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+    <p *ngFor="let alert of alerts">
+      <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
+    </p>
+    <nz-table class="mt-4" #rowSelectionTable nzShowSizeChanger [nzData]="listOfData" [nzPageSize]="5" (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
       <thead>
         <tr>
           <th>ItmeInfo</th>
           <th>Price</th>
+          <th>Manufacturer</th>
           <th>Description</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of rowSelectionTable.data; index as productId">
+        <tr *ngFor="let data of rowSelectionTable.data; index as id">
           <td>
             <img src="/assets/img/iPhone11.jpg" class="img-sty">
-            {{ data.name }}</td>
+            {{ data.itemname }}</td>
           <td>{{ data.price }}</td>
-          <td>{{ data.description }}
-            &nbsp;
-    text-align: center;
-            <a class="detail-link float-right" [routerLink]="['/products', productId]">Details</a>
+          <td>{{ data.manufacture.name }}</td>
+          <td >
+            <!-- <p *ngIf="data.descriptions!==[]"></p> -->
+            {{ data.descriptionString}} 
+          </td>
+          <td>
+            <a class="detail-link float-right" (click)="goto(data.id)" > Details</a>
+            <!-- <a class="detail-link float-right" [routerLink]="['/products']" [queryParams]="{itemId:data.id}"> Details</a> -->
+ 
           </td>
         </tr>
       </tbody>
     </nz-table>
-    <button type="button" class="btn btn-primary submit-btn mt-4 offset-5">Back</button>
   </div>
 </div>
 

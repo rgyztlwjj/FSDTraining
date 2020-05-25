@@ -2,6 +2,7 @@
   <nz-upload
     nzAction="./"
     nzListType="picture-card"
+    (nzChange)="upLoadChange($event)"
     [(nzFileList)]="fileList"
     [nzShowButton]="fileList.length < 4"
     [nzPreview]="handlePreview"
@@ -10,9 +11,9 @@
     <i nz-icon nzType="plus"></i>
     <div class="ant-upload-text">Upload</div>
   </nz-upload>
-  <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible = false">
+  <nz-modal class ="img-frame" [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible = false">
     <ng-template #modalContent>
-      <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+      <img [src]="previewImage" [ngStyle]="{ width: '90%' }" />
     </ng-template>
   </nz-modal>
 </div>

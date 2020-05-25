@@ -46,7 +46,7 @@ export class SalesManageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let id = window.sessionStorage.getItem('id');
+    let id = window.sessionStorage.getItem('userId');
     console.log("ID:"+ id);
     //  const children: Array<{ label: string; value: string }> = [];
     // for (let i = 10; i < 36; i++) {

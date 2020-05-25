@@ -1,11 +1,15 @@
 <body>
   <h1 class="title-label col-sm-8 offset-sm-2 mt-4 mb-2 font-weight-normal">Search</h1>
+  <p *ngFor="let alert of alerts" class="mb-2">
+    <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
+  </p>
   <div class="div-signin offset-sm-2 col-sm-8">
       <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-        <input type="text" nz-input placeholder="input search products" />
+        <input ngModel name="context"  [(ngModel)]="context" type="text" nz-input placeholder="input search products" />
       </nz-input-group>
       <ng-template #suffixIconButton>
-        <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+        <!-- [routerLink]="['/productlist']"  [queryParams]="{context:this.context}" -->
+        <button nz-button  (click)="check()" nzType="primary"  nzSearch><i nz-icon nzType="search"></i></button>
       </ng-template>
   </div>
 </body>

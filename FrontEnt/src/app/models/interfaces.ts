@@ -16,10 +16,30 @@ export interface SelectedSub{
     name:string;
   }
 
+export interface Cart{
+    number:number;
+    itemId:number;
+    buyerId:any;
+
+}
+
 export  interface Stock{
     itemid:number;
     manufacturName:string;
     itemName:string;
     price:number;
     sellerId:number;
+}
+
+export interface SearchItem{
+    startPrice: string;
+    endPrice: string;
+    manufacturer: string;
+}
+export  interface product{
+    id:any;
+    itemname:any;
+    manufacturename:any;
+    price:any;
+    description:any;
 }

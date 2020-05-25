@@ -1,4 +1,5 @@
-  <nz-table class="mt-4" #rowSelectionTable nzShowSizeChanger [nzData]="listOfData" (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+  
+  <nz-table class="mt-4" #rowSelectionTable nzShowSizeChanger [nzData]="listOfData"  [nzPageSize]="5" (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
     <thead>
       <tr>
         <th>ItmeInfo</th>
@@ -8,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of rowSelectionTable.data; index as productId">
+      <tr *ngFor="let data of rowSelectionTable.data; index as itemid">
         <td>
           {{ data.itemname }}</td>
         <td>{{ data.price }}</td>
@@ -17,7 +18,8 @@
           <nz-input-number [(ngModel)]="data.stock" [nzStep]="1 " [nzMin]="0 " class="stock"></nz-input-number>
         </td>
         <td>
-          <a class="detail-link float-right" [routerLink]="['/products', productId]">Updates</a>
+          <button class="btn btn-primary mr-2" type="submit" onsubmit="Updatestock(index)" >Update</button>
+          <!-- <a class="detail-link float-right" [routerLink]="['/products', itemid]">Updates</a> -->
         </td>
       </tr>
     </tbody>

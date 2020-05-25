@@ -1,46 +1,108 @@
 import { Component, OnInit } from '@angular/core';
 
-import { products } from '../../services/products';
+import { ProductService } from '../../services/product.service';
+import { CommonService } from '../../services/common.service';
+import { Manufacturer,SearchItem,product} from '../../models/interfaces';
+import { ActivatedRoute ,Router} from'@angular/router';
 
-interface ItemData {
-  name: string;
-  price: number;
-  description: string;
-  stock:number;
-}
 @Component({
   selector: 'app-productlist',
   templateUrl: './productlist.component.html',
   styleUrls: ['./productlist.component.css']
 })
 export class ProductlistComponent implements OnInit {
+
+  manufacturers:Manufacturer[];
+  searchItem: SearchItem;
+  productlst:product[];
+
+
+  constructor(private commonservice: CommonService,
+              private service: ProductService,
+              private routerinfo: ActivatedRoute,
+              private router: Router) {}
+
   listOfOption: Array<{ label: string; value: string }> = [];
   listOfTagOptions = [];
 
-  // ngOnInit(): void {
-  //   const children: Array<{ label: string; value: string }> = [];
-  //   for (let i = 10; i < 36; i++) {
-  //     children.push({ label: i.toString(36) + i, value: i.toString(36) + i });
-  //   }
-  //   this.listOfOption = children;
-  // }
-
  
-  listOfCurrentPageData: ItemData[] = [];
-  listOfData: ItemData[] = [];
+  listOfCurrentPageData: product[] = [];
+  listOfData: product[] = [];
+  alerts:any;
+  
 
-  onCurrentPageDataChange($event: ItemData[]): void {
+  context="";
+
+  onCurrentPageDataChange($event: product[]): void {
     this.listOfCurrentPageData = $event;
   }
 
   ngOnInit(): void {
+    /*get paramters from prepage  */
+    this.context=this.routerinfo.snapshot.queryParams["Item"];
+    console.log("para:"+ this.context);
+   /*display manufacturer list */
+   this.commonservice.getManufactrue().subscribe(
+    data =>{
+      console.log(JSON.stringify(data));
+      const manu: any =data;
+      if(manu){
+        this.manufacturers=manu;
+        }
+      }
+    );
 
-     const children: Array<{ label: string; value: string }> = [];
-    for (let i = 10; i < 36; i++) {
-      children.push({ label: i.toString(36) + i, value: i.toString(36) + i });
+    /*blank the input filter */
+    this.searchItem = {
+      startPrice: '',
+      endPrice: '',
+      manufacturer: '',
     }
-    this.listOfOption = children;
+    // this.products$ = this.service.getProducts(this.searchItem);
+    
+    /* */
+    this.service.getContexProducts(this.context).subscribe(data => {
+      console.log(JSON.stringify(data));
+      const info: any = data;
+      if(info){
+        this.listOfData = info;
+      }
+    },
+    res => {
+      const response: any = res;
+      console.log(response.status);
+      this.alerts=this.service.setWarning();
+    });
 
-    this.listOfData = products;
+  }
+
+  /* */
+  onSubmit(value: any) {
+    if(!(value.startPrice ==='')||!(value.endPrice==='')||!(value.manufacturer==='') ){
+      this.service.getProducts(value).subscribe(data => {
+        console.log(JSON.stringify(data));
+        const info: any = data;
+
+        if(info){
+          this.listOfData = info;
+          console.log("list:"+JSON.stringify(this.listOfData));
+        }
+      },
+      res => {
+        const response: any = res;
+        console.log(response.status);
+        this.alerts=this.service.setWarning();
+      }
+      );
+    }
+
+  }
+
+  close(any) {
+    this.alerts.splice(this.alerts.indexOf(alert), 1);
+  }
+
+  goto(id){
+      this.router.navigate(['/products'],{queryParams:{Item:this.context,itemId:id}});
   }
 }

@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           if(info.token){
             window.sessionStorage.setItem('token', info.token);
             window.sessionStorage.setItem('role', this.role);
-            window.sessionStorage.setItem('id', info.id);
+            window.sessionStorage.setItem('userId', info.id);
 
             if ("1" === info.role) {
               console.log('buyer in');

@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'mycart',component: MycartComponent},
   { path: 'historylist',component: HistorylistComponent},
   { path:  'productlist', component: ProductlistComponent},
-  { path: 'products/:productId', component: ProductDetailsComponent},
+  { path: 'products', component: ProductDetailsComponent},
   { path: 'salesmanage', component: SalesManageComponent}
 
 ];

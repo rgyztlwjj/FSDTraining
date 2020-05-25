@@ -3,6 +3,7 @@ import { CommonService } from '../../../services/common.service'
 import { products } from '../../../services/products';
 
 interface ItemData {
+  itemid;number;
   name: string;
   price: number;
   description: string;
@@ -22,7 +23,7 @@ export class ManageStockComponent implements OnInit {
 
   ngOnInit() {
 
-    let id = window.sessionStorage.getItem('id');
+    let id = window.sessionStorage.getItem('userId');
     console.log("tab2+ID:"+ id);
 
     this.commonservice.getitemlist(id).subscribe(
@@ -43,4 +44,5 @@ export class ManageStockComponent implements OnInit {
   _submitForm(){
 
   }
+
 }

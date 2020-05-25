@@ -39,6 +39,16 @@ export class CommonService {
     return this.http.get<Stock[]>(`seller/stock`,{ params: new HttpParams().set('userId', id)});
     // return this.http.post(`user/signinbuyer`, JSON.stringify(buyer), httpOptions);
   }
+
+
+  updatestock(itemId,stock){
+    alert("parar:"+ itemId);
+    return this.http.post<Stock[]>(`seller/updatestock`,
+      { params: new HttpParams()
+        .set('itemId', itemId)
+        .set('stock', stock)});
+    // return this.http.post(`user/signinbuyer`, JSON.stringify(buyer), httpOptions);
+  }
   // getSubcategory( category_id ){
   //   return this.http.get<SubCategory[]>(`seller/subcategory`,
   //     { params : new HttpParams()
