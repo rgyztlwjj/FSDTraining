@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
+import { PurchasehistoryService } from '../../services/purchasehistory.service';
 interface ItemData {
   id: number;
   name: string;
@@ -13,70 +15,44 @@ interface ItemData {
   styleUrls: ['./historylist.component.css']
 })
 export class HistorylistComponent implements OnInit {
-  // listOfSelection = [
-  //   {
-  //     text: 'Select All Row',
-  //     onSelect: () => {
-  //       this.onAllChecked(true);
-  //     }
-  //   },
-  //   {
-  //     text: 'Select Odd Row',
-  //     onSelect: () => {
-  //       this.listOfCurrentPageData.forEach((data, index) => this.updateCheckedSet(data.id, index % 2 !== 0));
-  //       this.refreshCheckedStatus();
-  //     }
-  //   },
-  //   {
-  //     text: 'Select Even Row',
-  //     onSelect: () => {
-  //       this.listOfCurrentPageData.forEach((data, index) => this.updateCheckedSet(data.id, index % 2 === 0));
-  //       this.refreshCheckedStatus();
-  //     }
-  //   }
-  // ];
-  // checked = false;
-  // indeterminate = false;
+
   listOfCurrentPageData: ItemData[] = [];
   listOfData: ItemData[] = [];
-  // setOfCheckedId = new Set<number>();
 
-  // updateCheckedSet(id: number, checked: boolean): void {
-  //   if (checked) {
-  //     this.setOfCheckedId.add(id);
-  //   } else {
-  //     this.setOfCheckedId.delete(id);
-  //   }
-  // }
+  userId:string;
 
-  // onItemChecked(id: number, checked: boolean): void {
-  //   this.updateCheckedSet(id, checked);
-  //   this.refreshCheckedStatus();
-  // }
-
-  // onAllChecked(value: boolean): void {
-  //   this.listOfCurrentPageData.forEach(item => this.updateCheckedSet(item.id, value));
-  //   this.refreshCheckedStatus();
-  // }
+  constructor(
+    private router:Router,
+    private activerouter: ActivatedRoute,
+    private service: PurchasehistoryService
+  ) { }
 
   onCurrentPageDataChange($event: ItemData[]): void {
     this.listOfCurrentPageData = $event;
     // this.refreshCheckedStatus();
   }
 
-  // refreshCheckedStatus(): void {
-  //   this.checked = this.listOfCurrentPageData.every(item => this.setOfCheckedId.has(item.id));
-  //   this.indeterminate = this.listOfCurrentPageData.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
-  // }
 
   ngOnInit(): void {
-    this.listOfData = new Array(20).fill(0).map((_, index) => {
-      return {
-        id: index,
-        name: `Edward King ${index}`,
-        price: 32,
-        date: '20200202'
-      };
-    });
+    this.userId = window.sessionStorage.getItem('userId');
+    console.log("userId" + this.userId);
+
+       /* get Item Detail information buy id*/
+       this.service.getHistory(this.userId).subscribe(data => {
+        console.log(JSON.stringify(data));
+        const info: any = data;
+        if(info){
+          this.listOfData = info;
+        }
+      },
+      res => {
+        const response: any = res;
+        console.log(response.status);
+        // this.alerts=this.service.setWarning();
+      });
+
   }
+  goto(id){
+    this.router.navigate(['/products'],{queryParams:{itemId:id}});
+}
 }

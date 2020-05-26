@@ -1,5 +1,6 @@
 package com.emart.sellerms.controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,10 +72,12 @@ public class SellerController {
 		return ResponseEntity.ok(lst);
 	}
 
-	@GetMapping("/report/{userId}")
-	public ResponseEntity<List<ReportModel>> getReport(@PathVariable Integer userId) {
+	@GetMapping("/report")
+	public ResponseEntity<List<ReportModel>> getReport(@RequestParam("userId") String userId,
+			@RequestParam("strFromDate") String strFromDate,
+			@RequestParam("strToDate") String strToDate) throws ParseException {
 
-		List<ReportModel> lst = reportservice.getReport(userId);
+		List<ReportModel> lst = reportservice.getReport(Integer.valueOf(userId),strFromDate,strToDate);
 
 		if (CollectionUtils.isEmpty(lst)) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -97,14 +100,16 @@ public class SellerController {
 	}
 
 	@PostMapping("/updatestock")
-	public ResponseEntity<StockModel> andItem(@RequestParam("itemId") Integer itemId,
-			@RequestParam("stock") Integer stock) {
+	public ResponseEntity<StockModel> updateStock(@RequestParam("itemId") String itemId,
+			@RequestParam("stock") String stock) {
 
-		if (!stockservice.updateStocks(itemId, stock)) {
+		StockModel model = stockservice.updateStocks(Integer.valueOf(itemId), Integer.valueOf(stock));
+		
+		if (model == null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(null);
+		return ResponseEntity.status(HttpStatus.CREATED).body(model);
 
 	}
 

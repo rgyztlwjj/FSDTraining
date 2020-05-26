@@ -15,22 +15,16 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import com.emart.buyerms.entity.DescriptionsEntity;
-import com.emart.buyerms.entity.ItemViewEntity;
 import com.emart.buyerms.entity.ItemsEntity;
 import com.emart.buyerms.entity.PictureEntity;
-import com.emart.buyerms.models.ItemDetailModel;
 import com.emart.buyerms.models.ItemsModel;
 import com.emart.buyerms.repository.DescriptionsRepository;
-import com.emart.buyerms.repository.ItemViewRepository;
 import com.emart.buyerms.repository.ItemsRepository;
 import com.emart.buyerms.repository.PictureRepository;
 
 @Service
 public class ItemServiceImpl implements ItemService {
 	private static final Logger log = LoggerFactory.getLogger(ItemServiceImpl.class);
-
-	@Autowired
-	private ItemViewRepository itemViewRepositor;
 
 	@Autowired
 	private ItemsRepository itemRepositor;

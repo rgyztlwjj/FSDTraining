@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.emart.buyerms.models.ItemDetailModel;
-import com.emart.buyerms.models.ItemModel;
 import com.emart.buyerms.models.ItemsModel;
 import com.emart.buyerms.service.ItemService;
 

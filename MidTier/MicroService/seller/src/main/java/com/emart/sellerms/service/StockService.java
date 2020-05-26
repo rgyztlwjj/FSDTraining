@@ -18,5 +18,5 @@ public interface StockService {
 	 * @param stockmodel
 	 * @return
 	 */
-	public boolean updateStocks(Integer id,Integer stock);
+	public StockModel updateStocks(Integer id,Integer stock);
 }

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { products } from '../../services/products';
-import { reports } from '../../services/reports';
 
 // interface ItemData {
 //   name: string;

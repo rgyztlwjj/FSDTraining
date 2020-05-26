@@ -15,7 +15,7 @@
       <tr *ngFor="let data of editRowTable.data" class="editable-row">
         <td>
           <img src="/assets/img/iPhone11.jpg" class="img-sty">
-          {{ data.itemname }}&nbsp;{{data.manufactur}}</td>
+          {{ data.item }}</td>
         <td>{{ data.price }}</td>
         <td>
           <div class="editable-cell" [hidden]="editnumber === data.number" >
@@ -38,18 +38,20 @@
 <div >
   <nz-row [nzGutter]="16">
     <nz-col [nzSpan]="12">
-      <nz-statistic [nzValue]="91.01 | money" [nzTitle]="'Total Tax (CNY)'"></nz-statistic>
+      <nz-statistic [nzValue]="TotalT" [nzTitle]="'Total Tax (CNY)'"></nz-statistic>
+
+      <!-- <nz-statistic [nzValue]="TotalT | money" [nzTitle]="'Total Tax (CNY)'"></nz-statistic> -->
     </nz-col>
   </nz-row>
     <nz-row [nzGutter]="16">
     <nz-col [nzSpan]="12">
-      <nz-statistic [nzValue]="2019.111 | money" [nzTitle]="'Total Price (CNY)'"></nz-statistic>
+      <nz-statistic [nzValue]="TotalP" [nzTitle]="'Total Price (CNY)'"></nz-statistic>
     </nz-col>
   </nz-row>
 </div>
 <div >
   <!-- <button type="button" class="btn btn-primary submit-btn mr-4 offset-4">Back</button> -->
   <button type="button" class="btn btn-primary submit-btn mr-4 offset-4" [routerLink]="['/productlist']">Back</button>
-  <button type="button" class="btn btn-primary submit-btn" [routerLink]="['/historylist']">Checkout</button>
+  <button type="button" class="btn btn-primary submit-btn" [routerLink]="['/historylist']">History</button>
 </div>
 </body>

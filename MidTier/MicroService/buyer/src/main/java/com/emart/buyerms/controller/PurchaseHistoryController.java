@@ -9,6 +9,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.emart.buyerms.models.PurchaseHistoryModel;
@@ -24,8 +25,8 @@ public class PurchaseHistoryController {
      * @param userId
      * @return List<PurchaseHistoryModel>
      */
-    @GetMapping("/{userId}")
-    public ResponseEntity<List<PurchaseHistoryModel>> getPurchaseHistory(@PathVariable String userId) {
+    @GetMapping
+    public ResponseEntity<List<PurchaseHistoryModel>> getPurchaseHistory(@RequestParam("userId") String userId) {
         List<PurchaseHistoryModel> lst = service.getPurchaseHistory(userId);
 
         if (CollectionUtils.isEmpty(lst)) {

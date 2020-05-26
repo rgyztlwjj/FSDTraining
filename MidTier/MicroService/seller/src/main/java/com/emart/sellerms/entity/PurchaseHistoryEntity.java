@@ -1,4 +1,4 @@
-package com.emart.buyerms.entity;
+package com.emart.sellerms.entity;
 
 import java.util.Date;
 

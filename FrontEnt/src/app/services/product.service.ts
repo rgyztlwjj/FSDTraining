@@ -46,5 +46,27 @@ setWarning():Alert[]{
   this.alerts.push({type : 'warning', message: 'No data'});
   return this.alerts;
 }
+ 
+  update(id: string,stock: string) {
+    alert("itemId" + id);
+    alert("stock" + stock);
+    return this.http.post(`seller/updatestock`,
+      { params: new HttpParams()
+                .set('itemId', id)
+                .set('stock', stock)});
+  }
+
+
+
+
+  getreport(id:string,fromDate:string,toDate:string){
+    alert("parar:"+ id);
+    return this.http.get(`seller/report`,{ 
+      params: new HttpParams()
+              .set('userId', id)
+              .set('strFromDate', fromDate)
+              .set('strToDate', toDate)});
+    // return this.http.post(`user/signinbuyer`, JSON.stringify(buyer), httpOptions);
+  }
 
 }

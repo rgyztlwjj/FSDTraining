@@ -3,6 +3,7 @@ package com.emart.buyerms.service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,6 +76,7 @@ public class CartServiceImpl implements CartService {
 
     /**
      * Add item to buyer's cart.
+     * If you have added before just refresh the number
      * @param model CartModel
      * @return the number of items in buyer's cart
      */
@@ -83,16 +85,18 @@ public class CartServiceImpl implements CartService {
         CartEntity entity = new CartEntity();
 
         CartEntity obj = cartRepositor.findByItemId(model.getItemId());
-        
+
+        //item have been added also
         if( obj != null){
 
             int number= obj.getNumber();
             entity = obj;
             
         	entity.setNumber(number+1);
-        }
-        //Copy propeties from cart model to cart entity
-        BeanUtils.copyProperties(model, entity);
+        }else {
+            //Copy propeties from cart model to cart entity
+            BeanUtils.copyProperties(model, entity);
+		}
 
         //Add to cart
         cartRepositor.save(entity);
@@ -107,17 +111,14 @@ public class CartServiceImpl implements CartService {
      * @return the number of items in buyer's cart
      */
     @Override
-    public Integer delete(CartModel model) {
-        CartEntity entity = new CartEntity();
-
-        //Copy propeties from cart model to cart entity
-        BeanUtils.copyProperties(model, entity);
-
+    public Integer delete(String id) {
+        Optional<CartEntity> entity = cartRepositor.findById(Integer.valueOf(id));
+        Integer userId = entity.get().getBuyerId();
         //Delete item from buyer's cart
-        cartRepositor.delete(entity);
+        cartRepositor.delete(entity.get());
 
         //Get the number of items in buyer's cart
-        return cartRepositor.findByBuyerId(model.getBuyerId()).size();
+        return cartRepositor.findByBuyerId(userId).size();
     }
 
 }

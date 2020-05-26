@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../../../services/common.service'
-import { products } from '../../../services/products';
+import { ProductService } from '../../../services/product.service'
 
 interface ItemData {
   itemid;number;
@@ -19,7 +19,9 @@ export class ManageStockComponent implements OnInit {
   listOfCurrentPageData: ItemData[] = [];
   listOfData: ItemData[] = [];
 
-  constructor(private commonservice:CommonService ) { }
+  constructor(
+    private commonservice:CommonService,
+    private proservice:ProductService) { }
 
   ngOnInit() {
 
@@ -41,8 +43,19 @@ export class ManageStockComponent implements OnInit {
     this.listOfCurrentPageData = $event;
   }
 
-  _submitForm(){
+  Updatestock(id:string,stock:string){
 
+
+    this.proservice.update(id,stock).subscribe(
+      data =>{
+      console.log(JSON.stringify(data));
+      const products: any =data;
+      if(products){
+        this.listOfData = products;
+        console.log("list:" + JSON.stringify(this.listOfData));
+      }
+});
   }
+
 
 }

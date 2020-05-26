@@ -11,7 +11,7 @@ public class PurchaseHistoryModel {
     private String picture;
     private String item;
     private BigDecimal price;
-    private int num;
+    private int number;
     private BigDecimal amount;
     private Date purchaseDateTime;
 
@@ -57,11 +57,11 @@ public class PurchaseHistoryModel {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-    public int getNum() {
-        return num;
+    public int getNumber() {
+        return number;
     }
-    public void setNum(int num) {
-        this.num = num;
+    public void setNumber(int number) {
+        this.number = number;
     }
     public BigDecimal getAmount() {
         return amount;

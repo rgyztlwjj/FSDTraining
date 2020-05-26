@@ -68,12 +68,12 @@ public class StockServiceImpl implements StockService {
 
 
 	@Override
-	public boolean updateStocks(Integer id,Integer stock) {
+	public StockModel updateStocks(Integer id,Integer stock) {
 		
 		Optional<ItemsEntity> objEntity =itemsrepository.findById(id);
 		if (objEntity == null) {
 
-			return false;
+			return null;
 		}
 		try {
 			ItemsEntity updateobjEntity=  objEntity.get();
@@ -82,9 +82,14 @@ public class StockServiceImpl implements StockService {
 			itemsrepository.save(updateobjEntity);
 		} catch (Exception e) {
 			
-			return false;
+			return null;
 		}
-		return true;
+		
+		StockModel model = new StockModel();
+		 
+		BeanUtils.copyProperties(objEntity, model);
+		
+		return model;
 	}
 
 

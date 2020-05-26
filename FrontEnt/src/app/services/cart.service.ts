@@ -15,7 +15,6 @@ export class CartService {
    /* add to cart */
   addToCart(item){
     this.items.push(item);
-      alert("input:"+ JSON.stringify(item));
       return this.http.post(`buyer/cart/add`, JSON.stringify(item), httpOptions);
   }
 
@@ -26,6 +25,13 @@ export class CartService {
                 .set('userId', userId)});
   }
 
+    /* delete item by userId */
+    deteleitem(id: string) {
+      return this.http.delete(`buyer/cart/delete`,
+        { params: new HttpParams()
+                  .set('Id', id)});
+    }
+  
   clearCart(){
     this.items = [];
     return this.items;

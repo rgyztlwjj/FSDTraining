@@ -1,5 +1,6 @@
 package com.emart.buyerms.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class PurchaseHistoryServiceImpl implements PurchaseHistoryService {
      * @return List<PurchaseHistoryModel>
      */
     public List<PurchaseHistoryModel> getPurchaseHistory(String buyerId) {
-        List<PurchaseHistoryEntity> lstEntity = repository.findByBuyerId(buyerId);
+        List<PurchaseHistoryEntity> lstEntity = repository.findByBuyerId(Integer.valueOf(buyerId));
 
         if (CollectionUtils.isEmpty(lstEntity)) {
             return null;
@@ -44,11 +45,17 @@ public class PurchaseHistoryServiceImpl implements PurchaseHistoryService {
 
     private PurchaseHistoryModel toModel(PurchaseHistoryEntity entity) {
         PurchaseHistoryModel model = new PurchaseHistoryModel();
-        model.setId(String.valueOf(entity.getId()));
-
-        //TODO
-//        ItemDetailModel itemModel =  itemService.getItemDetail(entity.getItemId());
-
+        
+        model.setId(String.valueOf(entity.getItemId()));
+        model.setItem(entity.getItem().getItemname());
+        model.setPrice(entity.getItem().getPrice());
+        model.setCategory(entity.getItem().getCategory().getCategoryName());
+        model.setSubcategory(entity.getItem().getSubcategory().getSubcategoryName());
+        model.setManufactur(entity.getItem().getManufacture().getName());
+        
+        model.setNumber(entity.getNumber());
+        model.setAmount(entity.getItem().getPrice().multiply(new BigDecimal(entity.getNumber())));
+        model.setPurchaseDateTime(entity.getDatetime());
 
         return model;
     }

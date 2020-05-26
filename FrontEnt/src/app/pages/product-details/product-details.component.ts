@@ -38,7 +38,7 @@ export class ProductDetailsComponent implements OnInit {
       const info: any = data;
       if(info){
         console.log("ReturnData" + JSON.stringify(info));
-        alert("susseced");
+        this.router.navigate(['/mycart']);
       }
     },
     res => {

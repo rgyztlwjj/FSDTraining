@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { reports } from '../../../services/reports';
-
+import { ProductService } from '../../../services/product.service'
 
 
 interface Reportlist{
@@ -26,11 +25,26 @@ export class ReportsComponent implements OnInit {
   monthValuestr = 1;
   dayValuestr = 1;
 
+  strFromDate='20200101';
+  strToDate='20200101';
 
-  constructor() { }
+  constructor(private proservice:ProductService) { }
 
   ngOnInit() {
-    this.listOfreport = reports;
+    // this.listOfreport = reports;
+
+    let id = window.sessionStorage.getItem('userId');
+    console.log("tab2+ID:"+ id+this.strFromDate+this.strToDate);
+
+    this.proservice.getreport(id,this.strFromDate,this.strToDate).subscribe(
+            data =>{
+            console.log(JSON.stringify(data));
+            const reports: any =data;
+            if(reports){
+              this.listOfreport = reports;
+              console.log("list:" + JSON.stringify(this.listOfreport));
+            }
+    });
   }
 
 }

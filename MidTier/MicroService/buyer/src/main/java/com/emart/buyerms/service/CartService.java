@@ -27,6 +27,6 @@ public interface CartService {
      * @param model CartModel
      * @return the number of items in buyer's cart
      */
-    public Integer delete(CartModel model);
+    public Integer delete(String id);
 
 }
