@@ -7,13 +7,13 @@ public class ReportModel {
    
     private Integer sellerId;
    
-    private String itemName;
+    private String itemname;
 
     private BigDecimal price;
 
-    private Integer salesVolume;
+    private Integer sales;
     
-    private BigDecimal transactionAmount;
+    private Integer stock;
 
     public Integer getId() {
         return id;
@@ -31,12 +31,12 @@ public class ReportModel {
         this.sellerId = sellerId;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getItemname() {
+        return itemname;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName == null ? null : itemName.trim();
+    public void setItemname(String itemname) {
+        this.itemname = itemname == null ? null : itemname.trim();
     }
 
     public BigDecimal getPrice() {
@@ -47,19 +47,19 @@ public class ReportModel {
         this.price = price;
     }
 
-    public Integer getSalesVolume() {
-        return salesVolume;
+    public Integer getSales() {
+        return sales;
     }
 
-    public void setSalesVolume(Integer salesVolume) {
-        this.salesVolume = salesVolume;
+    public void setSales(Integer sales) {
+        this.sales = sales;
     }
 
-	public BigDecimal getTransactionAmount() {
-		return transactionAmount;
+	public Integer getStock() {
+		return stock;
 	}
 
-	public void setTransactionAmount(BigDecimal transactionAmount) {
-		this.transactionAmount = transactionAmount;
+	public void setStock(Integer stock) {
+		this.stock = stock;
 	}
 }

@@ -60,7 +60,7 @@ public class StockServiceImpl implements StockService {
 		StockModel stockmodel= new StockModel();
 		
 		BeanUtils.copyProperties(entity, stockmodel);
-		stockmodel.setItemId(entity.getId());
+		stockmodel.setItemid(entity.getId());
 		
 		return stockmodel;
 	}

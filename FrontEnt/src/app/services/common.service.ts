@@ -14,30 +14,19 @@ export class CommonService {
 
   constructor(private http: HttpClient) { }
 
+  /*get manufacturer list */
   getManufactrue(){
     return this.http.get<Manufacturer[]>(`seller/manufacturer`);
-    // return this.http.get<Manufacturer[]>(`seller-micoroserver/seller`);
   }
 
+  /*get category list */
   getCategory(){
     return this.http.get<Category[]>(`seller/category`);
   }
 
+  /*get subcategory list */
   getSubcategory(){
     return this.http.get<SubCategory[]>(`seller/subcategory`);
-  }
-
-  additem(item){
-    alert("input:"+ JSON.stringify(item));
-    return this.http.post(`seller/additem`, JSON.stringify(item), httpOptions);
-  }
-
-
-
-  getitemlist(id){
-    alert("parar:"+ id);
-    return this.http.get<Stock[]>(`seller/stock`,{ params: new HttpParams().set('userId', id)});
-    // return this.http.post(`user/signinbuyer`, JSON.stringify(buyer), httpOptions);
   }
 
 

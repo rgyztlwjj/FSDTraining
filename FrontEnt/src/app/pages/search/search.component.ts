@@ -27,7 +27,6 @@ export class SearchComponent implements OnInit {
     if (!this.context ) {
       this.alerts.push({type : 'danger', message: 'input search words!'});
     }else{
-      alert("searh" + this.context);
       this.router.navigate(['/productlist'],{queryParams:{Item:this.context}});
            
     }

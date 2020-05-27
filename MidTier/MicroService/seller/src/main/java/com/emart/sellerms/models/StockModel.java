@@ -17,11 +17,11 @@ public class StockModel {
     private Integer stock;
     
 
-	public Integer getItemId() {
+	public Integer getItemid() {
 		return itemid;
 	}
 
-	public void setItemId(Integer itemid) {
+	public void setItemid(Integer itemid) {
 		this.itemid = itemid;
 	}
  

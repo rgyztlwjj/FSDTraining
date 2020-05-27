@@ -77,22 +77,18 @@ public class ReportServiceImpl implements ReportService {
 		
 		for(Map.Entry<Integer, List<PurchaseHistoryEntity>> entry : map.entrySet()) {
 			//Get item info
-			ItemsEntity itemEntity = iremRepository.findById(entry.getKey()).get();
-			
+			ItemsEntity itemEntity = entry.getValue().get(0).getItem();
 			ReportModel model = new ReportModel();
 			BeanUtils.copyProperties(itemEntity, model);
 			
 			int sumSalesVolume = 0;
-			BigDecimal sumTransactionAmount = new BigDecimal(0);
 			
 			//Sum
 			for (PurchaseHistoryEntity e : entry.getValue()) {
 				sumSalesVolume += e.getNumber();
-//				sumTransactionAmount = sumTransactionAmount.add(e.getTransactionAmount());
 			}
 			
-			model.setSalesVolume(sumSalesVolume);
-			model.setTransactionAmount(sumTransactionAmount);
+			model.setSales(sumSalesVolume);
 			
 			lstModel.add(model);
 		}

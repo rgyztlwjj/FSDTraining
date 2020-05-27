@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from '../../../services/common.service'
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+
+import { CommonService } from '../../../services/common.service';
+import { ProductService } from '../../../services/product.service';
 import { Manufacturer,Category,SubCategory ,SelectedSub} from '../../../models/interfaces';
 
 interface Alert {
@@ -32,7 +34,10 @@ export class AddProductComponent implements OnInit {
 
   validateForm: FormGroup;
 
-  constructor(private commonservice:CommonService ,private routerinfo:ActivatedRoute) { }
+  constructor(
+    private commonservice:CommonService ,
+    private proservice:ProductService,
+    private routerinfo:ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -104,7 +109,7 @@ export class AddProductComponent implements OnInit {
       }
       console.log(JSON.stringify(item));
 
-      this.commonservice.additem(item).subscribe(
+      this.proservice.additem(item).subscribe(
         data =>{
           console.log(JSON.stringify(data));
           const result: any =data;

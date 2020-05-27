@@ -17,8 +17,8 @@
       </label>
     </p>
     <p>
-      <button class="btn btn-primary mr-2 mb-3" type="submit" >Sign in</button  ><button
-         class="btn btn-primary ml-2 mb-3" type="clear">Clear </button>
+      <button class="btn btn-primary mr-2 mb-3" type="submit" >Sign in</button  >
+      <button class="btn btn-primary ml-2 mb-3" (click)="clear()">Clear </button>
   </p>
     <a  type="link" [routerLink]="['/register']"  [queryParams]="{role:this.role}">Register Now.</a>
   </form>

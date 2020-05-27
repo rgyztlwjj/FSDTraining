@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from '../../../services/common.service'
+
 import { ProductService } from '../../../services/product.service'
 
 interface ItemData {
@@ -20,7 +20,6 @@ export class ManageStockComponent implements OnInit {
   listOfData: ItemData[] = [];
 
   constructor(
-    private commonservice:CommonService,
     private proservice:ProductService) { }
 
   ngOnInit() {
@@ -28,7 +27,7 @@ export class ManageStockComponent implements OnInit {
     let id = window.sessionStorage.getItem('userId');
     console.log("tab2+ID:"+ id);
 
-    this.commonservice.getitemlist(id).subscribe(
+    this.proservice.getitemlist(id).subscribe(
             data =>{
             console.log(JSON.stringify(data));
             const products: any =data;
@@ -44,8 +43,7 @@ export class ManageStockComponent implements OnInit {
   }
 
   Updatestock(id:string,stock:string){
-
-
+    
     this.proservice.update(id,stock).subscribe(
       data =>{
       console.log(JSON.stringify(data));

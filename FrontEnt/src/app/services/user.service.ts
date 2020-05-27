@@ -15,23 +15,22 @@ export class UserService {
   Manufacturer:Manufacturer[];
   constructor(private http: HttpClient) { }
 
+  /*login */
   postSignIn(user) {
-    alert("input:"+ JSON.stringify(user));
     return this.http.post(`user`, JSON.stringify(user), httpOptions);
-    // return this.http.get(`seller`);
   }
 
+   /*registe as buyer */
   postSignUp(buyer) {
-    alert("input:"+ JSON.stringify(buyer));
     return this.http.post(`user/signinbuyer`, JSON.stringify(buyer), httpOptions);
-    // return this.http.post(`user/signinbuyer`, JSON.stringify(buyer), httpOptions);
   }
 
+   /*registe as seller */
   postSignUpSeller(seller) {
-    alert("input:"+ JSON.stringify(seller));
     return this.http.post(`user/signinseller`, JSON.stringify(seller), httpOptions);
-    // return this.http.post(`user/signinbuyer`, JSON.stringify(buyer), httpOptions);
   }
+
+  /*get current token */
   public get currentUserToken(): string {
     return sessionStorage.getItem('token');
   }

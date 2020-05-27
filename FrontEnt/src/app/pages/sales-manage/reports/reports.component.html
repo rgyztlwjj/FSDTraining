@@ -1,21 +1,30 @@
 <div>
+  <form class="form-signin" #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value)" novalidate>
   <div class="float-left left-div input-group mb-4">
-    <div class="input-group-prepend">
+    <nz-form-label >StartDate</nz-form-label>
+    <!-- <div class="input-group-prepend">
       <span class="input-group-text">StartDate</span>
-    </div>
-    <nz-input-number class="down-year"[(ngModel)]="yearValuestr" [nzMin]="2019" [nzMax]="2030" [nzStep]="1" ></nz-input-number>
-    <nz-input-number class="down-list" [(ngModel)]="monthValuestr" [nzMin]="1" [nzMax]="12" [nzStep]="1" ></nz-input-number>
-    <nz-input-number class="down-list" [(ngModel)]="dayValuestr" [nzMin]="1" [nzMax]="31" [nzStep]="1" ></nz-input-number>
+    </div> -->
+  <nz-form-control>
+    <nz-input-number  class="down-year" name = "yearValuestr" [(ngModel)]="yearValuestr" [nzMin]="2019" [nzMax]="2030" [nzStep]="1" ></nz-input-number>
+    <nz-input-number class="down-list" name="monthValuestr" [(ngModel)]="monthValuestr" [nzMin]="1" [nzMax]="12" [nzStep]="1" ></nz-input-number>
+    <nz-input-number class="down-list" name="dayValuestr" [(ngModel)]="dayValuestr" [nzMin]="1" [nzMax]="31" [nzStep]="1" ></nz-input-number>
+  </nz-form-control>
   </div>
   <div class="float-right right-div input-group mb-3">
-    <div class="input-group-prepend">
+    <!-- <div class="input-group-prepend">
       <span class="input-group-text">EndDate</span>
-    </div>
-    <nz-input-number class="down-year" [(ngModel)]="yearValue" [nzMin]="2019" [nzMax]="2030" [nzStep]="1" ></nz-input-number>
-    <nz-input-number class="down-list" [(ngModel)]="monthValue" [nzMin]="1" [nzMax]="12" [nzStep]="1" ></nz-input-number>
-    <nz-input-number class="down-list" [(ngModel)]="dayValue" [nzMin]="1" [nzMax]="31" [nzStep]="1" ></nz-input-number>
-    <button type="button" class="btn btn-primary btn-seach ml-1">Search</button>
+    </div> -->
+    <nz-form-label >EndDate</nz-form-label>
+    <nz-form-control>
+      <nz-input-number class="down-year" name="yearValue" [(ngModel)]="yearValue" [nzMin]="2019" [nzMax]="2030" [nzStep]="1" ></nz-input-number>
+      <nz-input-number class="down-list" name="monthValue"  [(ngModel)]="monthValue" [nzMin]="1" [nzMax]="12" [nzStep]="1" ></nz-input-number>
+      <nz-input-number class="down-list" name="dayValue"  [(ngModel)]="dayValue" [nzMin]="1" [nzMax]="31" [nzStep]="1" ></nz-input-number>
+   </nz-form-control>
+    <button type="submit" class="btn btn-primary btn-seach ml-1" >Search</button>
   </div>
+</form>
+
    <table class="mt-4 table table-striped" data-toggle="table">
     <thead>
       <tr>
@@ -28,9 +37,9 @@
     <tbody>
       <tr *ngFor="let data of listOfreport; index as productId">
         <td>
-          {{ data.name }}</td>
-        <td>{{ data.property }}</td>
-        <td>{{ data.sold }}</td>
+          {{ data.itemname }}</td>
+        <td>{{ data.price }}</td>
+        <td>{{ data.sales }}</td>
         <td>{{ data.stock }}</td>
       </tr>
     </tbody>

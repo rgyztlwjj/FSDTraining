@@ -10,6 +10,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -99,11 +100,10 @@ public class SellerController {
 		return ResponseEntity.ok(lst);
 	}
 
-	@PostMapping("/updatestock")
-	public ResponseEntity<StockModel> updateStock(@RequestParam("itemId") String itemId,
-			@RequestParam("stock") String stock) {
+	@PutMapping("/updatestock")
+	public ResponseEntity<StockModel> updateStock(@RequestBody StockModel stock) {
 
-		StockModel model = stockservice.updateStocks(Integer.valueOf(itemId), Integer.valueOf(stock));
+		StockModel model = stockservice.updateStocks(stock.getItemid() ,stock.getStock());
 		
 		if (model == null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

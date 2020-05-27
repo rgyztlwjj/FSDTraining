@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
           console.log(JSON.stringify(data));
           const info: any =  data;
 
-          alert(info.token)
           if(info.token){
             window.sessionStorage.setItem('token', info.token);
             window.sessionStorage.setItem('role', this.role);
@@ -99,6 +98,11 @@ export class LoginComponent implements OnInit {
     return true;
   }
   
+  clear():boolean{
+    this.username='';
+    this.password='';
+    return false;
+  }
 
   close(alert: Alert) {
     this.alerts.splice(this.alerts.indexOf(alert), 1);
@@ -107,5 +111,4 @@ export class LoginComponent implements OnInit {
   reset() {
     this.alerts = Array.from(ALERTS);
   }
-      
 }
