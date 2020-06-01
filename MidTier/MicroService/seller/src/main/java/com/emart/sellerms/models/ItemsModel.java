@@ -1,6 +1,7 @@
 package com.emart.sellerms.models;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.emart.sellerms.entity.DescriptionsEntity;
+import com.emart.sellerms.entity.ManufacturEntity;
+import com.emart.sellerms.entity.PictureEntity;
 
 
 public class ItemsModel {
@@ -22,6 +27,11 @@ public class ItemsModel {
     private Integer stock=0;
     private Integer sales=0;
     private Integer sellerId;
+    private ManufacturEntity manufacture;
+//    private List<DescriptionsEntity> descriptions;
+    private String descriptionString;
+    private String[] pictures;
+//    private List<PictureEntity> picture;
 
 	public Integer getId() {
 		return id;
@@ -94,5 +104,42 @@ public class ItemsModel {
 	public void setSellerId(Integer sellerId) {
 		this.sellerId = sellerId;
 	}
+	 public ManufacturEntity getManufacture() {
+			return manufacture;
+		}
 
+		public void setManufacture(ManufacturEntity manufacture) {
+			this.manufacture = manufacture;
+		}
+//	    public List<DescriptionsEntity> getDescriptions() {
+//			return descriptions;
+//		}
+//
+//		public void setDescriptions(List<DescriptionsEntity> descriptions) {
+//			this.descriptions = descriptions;
+//		}
+		
+		public String getDescriptionString() {
+			return descriptionString;
+		}
+
+		public void setDescriptionString(String descriptionString) {
+			this.descriptionString = descriptionString == null ? null : descriptionString.trim();
+		}
+		
+	    public String[] getPictures() {
+	        return pictures;
+	    }
+	    public void setPictures(String[] picture) {
+	        this.pictures = picture;
+	    }
+//		
+//	    public List<PictureEntity> getPicture() {
+//			return picture;
+//		}
+//
+//		public void setPicture(List<PictureEntity> picture) {
+//			this.picture = picture;
+//		}
+		
 }

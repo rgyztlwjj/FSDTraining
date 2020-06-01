@@ -17,7 +17,6 @@ public class PictureEntity {
     @Column(name="item_id")
     private Integer itemId;
 
-    private Integer seq;
 
     @Column(name="picture_path")
     private String picturePath;
@@ -37,15 +36,6 @@ public class PictureEntity {
     public void setItemId(Integer itemId) {
         this.itemId = itemId;
     }
-
-    public Integer getSeq() {
-        return seq;
-    }
-
-    public void setSeq(Integer seq) {
-        this.seq = seq;
-    }
-
     public String getPicturePath() {
         return picturePath;
     }

@@ -1,12 +1,18 @@
 package com.emart.sellerms.entity;
 
 import java.math.BigDecimal;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -37,6 +43,27 @@ public class ItemsEntity {
     @Column(name="seller_id")
     private Integer sellerId;
 
+    @OneToOne
+    @JoinColumn(name="manufactur_id",referencedColumnName="id", nullable = false, insertable = false,updatable = false)
+    private ManufacturEntity manufacture;
+    
+    @OneToOne
+    @JoinColumn(name="category_id",referencedColumnName="id", nullable = false, insertable = false,updatable = false)
+    private CategoryEntity category;
+    
+    @OneToOne
+    @JoinColumn(name="subcategory_id",referencedColumnName="id", nullable = false, insertable = false,updatable = false)
+    private SubCategoryEntity subcategory;
+    
+//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy="item")
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id")
+    private List<DescriptionsEntity> descriptions;
+    
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id")
+    private List<PictureEntity> picture;
+    
 	public Integer getId() {
 		return id;
 	}
@@ -108,5 +135,46 @@ public class ItemsEntity {
 	public void setSellerId(Integer sellerId) {
 		this.sellerId = sellerId;
 	}
+	
+    public ManufacturEntity getManufacture() {
+		return manufacture;
+	}
 
+	public void setManufacture(ManufacturEntity manufacture) {
+		this.manufacture = manufacture;
+	}
+	
+    public List<DescriptionsEntity> getDescriptions() {
+		return descriptions;
+	}
+
+	public void setDescriptions(List<DescriptionsEntity> descriptions) {
+		this.descriptions = descriptions;
+	}
+	
+    public CategoryEntity getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryEntity category) {
+		this.category = category;
+	}
+	
+    public SubCategoryEntity getSubcategory() {
+		return subcategory;
+	}
+
+	public void setCategory(SubCategoryEntity subcategory) {
+		this.subcategory = subcategory;
+	}
+	
+	
+    public List<PictureEntity> getPicture() {
+		return picture;
+	}
+
+	public void setPicture(List<PictureEntity> picture) {
+		this.picture = picture;
+	}
+	
 }

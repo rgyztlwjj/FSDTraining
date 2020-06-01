@@ -29,6 +29,12 @@ public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	private SubCategoryRepository subcategoryrepository;
+	
+	@Autowired
+	private PictureRepository pictureRepository;
+	
+	@Autowired
+	private DescriptionsRepository descriptionsRepository;
 
 	/**
 	 * Add a new item
@@ -40,27 +46,28 @@ public class ItemServiceImpl implements ItemService {
 		
 		BeanUtils.copyProperties(model, entity);	
 		try {
-			itemsrepository.save(entity);
+			entity = itemsrepository.save(entity);
 			
+			model.setId(entity.getId());
 			
+			//Insert into item_picture table
+			for (int i = 0; i < model.getPictures().length; i++) {
+				PictureEntity pictureEntity = new PictureEntity();
+				pictureEntity.setItemId(model.getId());
+				pictureEntity.setPicturePath(model.getPictures()[i]);
+				pictureRepository.save(pictureEntity);
+			}
 			
-//			//Insert into item_picture table
-//			for (int i = 0; i < model.getPictures().length; i++) {
-//				PictureEntity pictureEntity = new PictureEntity();
-//				pictureEntity.setItemId(model.getId());
-//				pictureEntity.setSeq(i + 1);
-//				pictureEntity.setPicturePath(model.getPictures()[i]);
-//				pictureRepository.save(pictureEntity);
-//			}
-//			
-//			// Insert into item_description table
-//			for (int i = 0; i < model.getDescriptions().length; i++) {
-//				DescriptionEntity descEntity = new DescriptionEntity();
-//				descEntity.setItemId(model.getId());
-//				descEntity.setSeq(i + 1);
-//				descEntity.setDescription(model.getDescriptions()[i]);
-//				descriptionRepository.save(descEntity);
-//			}
+			// Insert into item_description table
+			String description =model.getDescriptionString();
+			String[] descriptionslst = description.split(";");
+
+			for (int i = 0; i < descriptionslst.length; i++) {
+				DescriptionsEntity descEntity = new DescriptionsEntity();
+				descEntity.setItemId(model.getId());
+				descEntity.setDescription(descriptionslst[i]);
+				descriptionsRepository.save(descEntity);
+			}
 		} catch (Exception e) {
 			return false;
 			// TODO: handle exception
