@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 import com.emart.buyerms.entity.DescriptionsEntity;
 import com.emart.buyerms.entity.ManufacturEntity;
+import com.emart.buyerms.entity.PictureEntity;
 
 
 public class ItemsModel {
@@ -29,6 +30,8 @@ public class ItemsModel {
     private ManufacturEntity manufacture;
     private List<DescriptionsEntity> descriptions;
     private String descriptionString;
+    private String[] pictures;
+    private List<PictureEntity> picture;
 
 	public Integer getId() {
 		return id;
@@ -124,7 +127,20 @@ public class ItemsModel {
 	public void setDescriptionString(String descriptionString) {
 		this.descriptionString = descriptionString == null ? null : descriptionString.trim();
 	}
-
 	
+    public String[] getPictures() {
+        return pictures;
+    }
+    public void setPictures(String[] picture) {
+        this.pictures = picture;
+    }
+	
+    public List<PictureEntity> getPicture() {
+		return picture;
+	}
+
+	public void setPicture(List<PictureEntity> picture) {
+		this.picture = picture;
+	}
 	
 }

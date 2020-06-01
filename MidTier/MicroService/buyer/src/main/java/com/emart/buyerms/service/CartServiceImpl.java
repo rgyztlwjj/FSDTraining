@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import com.emart.buyerms.entity.CartEntity;
+import com.emart.buyerms.entity.PictureEntity;
 import com.emart.buyerms.models.CartModel;
 import com.emart.buyerms.models.ItemDetailModel;
 import com.emart.buyerms.repository.CartRepository;
@@ -68,9 +69,13 @@ public class CartServiceImpl implements CartService {
         model.setPrice(entity.getItem().getPrice());
         model.setCategory(entity.getItem().getCategory().getCategoryName());
         model.setSubcategory(entity.getItem().getSubcategory().getSubcategoryName());
-
         model.setTax(entity.getItem().getPrice().multiply(new BigDecimal("0.05")));
+        
+        List<PictureEntity> picList =entity.getItem().getPicture();
 
+		if(picList !=null && picList.size()>0) {
+			model.setPicture(picList.get(0).getPicturePath());
+		}
         return model;
     }
 

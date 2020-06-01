@@ -58,7 +58,12 @@ public class ItemsEntity {
 //    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy="item")
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
-   private List<DescriptionsEntity> descriptions;
+    private List<DescriptionsEntity> descriptions;
+    
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id")
+    private List<PictureEntity> picture;
+    
 	public Integer getId() {
 		return id;
 	}
@@ -162,4 +167,14 @@ public class ItemsEntity {
 	public void setCategory(SubcategoryEntity subcategory) {
 		this.subcategory = subcategory;
 	}
+	
+	
+    public List<PictureEntity> getPicture() {
+		return picture;
+	}
+
+	public void setPicture(List<PictureEntity> picture) {
+		this.picture = picture;
+	}
+	
 }

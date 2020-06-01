@@ -22,6 +22,8 @@ import com.emart.buyerms.repository.DescriptionsRepository;
 import com.emart.buyerms.repository.ItemsRepository;
 import com.emart.buyerms.repository.PictureRepository;
 
+import javassist.expr.NewArray;
+
 @Service
 public class ItemServiceImpl implements ItemService {
 	private static final Logger log = LoggerFactory.getLogger(ItemServiceImpl.class);
@@ -117,6 +119,19 @@ public class ItemServiceImpl implements ItemService {
 		}else {
 			model.setDescriptionString("");
 			
+		}
+
+		
+		if(!model.getPicture().isEmpty()) {
+			
+			List<PictureEntity> picList=model.getPicture();
+			
+			String[] picpath = new String[picList.size()];
+			
+			for(int i = 0; i < picList.size(); i++) {
+				picpath[i]=picList.get(i).getPicturePath();
+			}
+			model.setPictures(picpath);
 		}
 	
 	}
