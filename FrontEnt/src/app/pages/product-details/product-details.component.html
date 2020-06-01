@@ -1,15 +1,22 @@
 
   <h1 class="title-label mb-4 font-weight-normal">Item Specifications</h1>
   <div *ngIf="product">
-    <div class="left-div float-left mt-4">
+    <!-- <div class="left-div float-left mt-4">
       <img src="/assets/img/iPhone11.jpg" class="img-sty">
-    </div>
+    </div> -->
+    <div nz-col [nzSpan]="4" class="left-div float-left mt-4 img-sty" nzOffset="1">
+      <nz-carousel [nzEffect]="effect" nzAutoPlay>
+          <div nz-carousel-content *ngFor="let pic of product.pictures">
+              <img src="{{pic}}" class="pic-fix-szie">
+          </div>
+      </nz-carousel>
+  </div>
     <div class="ml-2 mt-4 right-div float-right">
     <h3>{{ product.itemname }}</h3>
     <h4>{{ product.price | currency}}</h4>
     <p>{{ product.manufacturename }}</p>
     <p>{{ product.description }}</p>
-    </div>
     <button type="button" (click)="goto()" class="btn btn-primary submit-btn mt-4 offset-5">Back</button>
     <button class="btn btn-primary submit-btn mt-4 ml-1" (click)="addToCart()">Buy</button>
+    </div>
   </div> 

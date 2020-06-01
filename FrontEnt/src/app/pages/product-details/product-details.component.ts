@@ -11,7 +11,7 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-
+  effect = 'scrollx';
   product:product;
   id:string;'';
   alerts:any;

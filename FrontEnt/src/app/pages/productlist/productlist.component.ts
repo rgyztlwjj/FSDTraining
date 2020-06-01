@@ -11,10 +11,11 @@ import { ActivatedRoute ,Router} from'@angular/router';
   styleUrls: ['./productlist.component.css']
 })
 export class ProductlistComponent implements OnInit {
-
+  effect = 'scrollx';
   manufacturers:Manufacturer[];
   searchItem: SearchItem;
   productlst:product[];
+  pic:string;
 
 
   constructor(private commonservice: CommonService,

@@ -1,5 +1,8 @@
 <form class="needs-validation"  id="myForm" (ngSubmit)="onSubmit()" novalidate>
   <div class="float-left left-div ">
+    <p *ngFor="let alert of alerts" class="mb-2">
+      <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
+    </p>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">Category</span>
@@ -8,8 +11,8 @@
         <nz-option nzValue="" nzLabel="ALL"></nz-option>
         <nz-option *ngFor="let item of categorys" [nzValue]="item.id" [nzLabel]="item.categoryName"></nz-option>
       </nz-select>
-
     </div>
+
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">SubCategory</span>
@@ -50,21 +53,22 @@
       <div class="input-group-prepend">
         <span class="input-group-text">Description</span>
       </div>
-        <input ngModel name="stock" type="text" [(ngModel)]="stock"  class="form-control" >
+        <input ngModel name="description" type="text" [(ngModel)]="description"  class="form-control" >
     </div>
 
     <div class="input-group mb-3">
-      <!-- <div class="input-group-prepend">
-        <span class="input-group-text">Description 1</span>
-      </div>
-      <input type="text" class="form-control" aria-label="description1">
+      <div class="clearfix">
+        <nz-upload nzAction="/seller/picture" nzListType="picture-card" [(nzFileList)]="pictureControls" [nzShowButton]="pictureControls.length < 4" [nzPreview]="handlePreview" [nzFileType]="'image/png,image/jpeg,image/gif,image/bmp'" (nzChange)="handleUploadPictureChange($event)">
+            <i nz-icon nzType="plus" style="font-size: 32px;color: #999;"></i>
+            <div class="ant-upload-text">Upload</div>
+        </nz-upload>
+        <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible = false">
+            <ng-template #modalContent>
+                <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+            </ng-template>
+        </nz-modal>
     </div>
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Description 2</span>
-      </div>
-      <input type="text" class="form-control" aria-label="description2"> -->
-      <app-upload-picture></app-upload-picture>
+      <!-- <app-upload-picture></app-upload-picture> -->
     </div>
   </div>
   <button type="submit" class="btn btn-primary mt-4 offset-5">Save&Submit</button>

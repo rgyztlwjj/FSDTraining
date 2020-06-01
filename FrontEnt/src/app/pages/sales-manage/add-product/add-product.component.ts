@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { UploadFile } from 'ng-zorro-antd/upload';
 
 import { CommonService } from '../../../services/common.service';
 import { ProductService } from '../../../services/product.service';
@@ -10,6 +11,16 @@ interface Alert {
   type: string;
   message: string;
 }
+function getBase64(file: File): Promise<string | ArrayBuffer | null> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
+const ALERTS: Alert[] = [];
+
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -29,10 +40,15 @@ export class AddProductComponent implements OnInit {
   manufacturersValue:string;
   itemname:string;
   price:string;
-  stock:string;
+  description:string;
   sellerId:string;
 
   validateForm: FormGroup;
+
+    //picture
+    pictureControls:UploadFile[] = [];
+    previewImage: string | undefined = '';
+    previewVisible = false;
 
   constructor(
     private commonservice:CommonService ,
@@ -40,6 +56,7 @@ export class AddProductComponent implements OnInit {
     private routerinfo:ActivatedRoute) { }
 
   ngOnInit() {
+    this.reset();
 
     this.sellerId=this.routerinfo.snapshot.queryParams["Id"];
     console.info("sellerId" + this.sellerId);
@@ -98,14 +115,22 @@ export class AddProductComponent implements OnInit {
       console.info("categoryvalue=" + this.categoryvalue);
       console.info("subcategoryValue=" + this.subcategoryValue);
       console.info("manufacturersValue=" + this.manufacturersValue);
+
+
+      let pictures : string[] = [];
+      for (let picture of this.pictureControls) {
+        pictures.push(picture.response.path);
+      }
+
       let item={
         categoryId:this.categoryvalue,
         subcategoryId:this.subcategoryValue,
         manufacturId:this.manufacturersValue,
-        itemName:this.itemname,
+        itemname:this.itemname,
         price:this.price,
-        stock:this.stock,
-        sellerId:this.sellerId
+        descriptionString:this.description,
+        sellerId:this.sellerId,
+        pictures:pictures
       }
       console.log(JSON.stringify(item));
 
@@ -121,5 +146,29 @@ export class AddProductComponent implements OnInit {
       );
     }
 
+    handlePreview = async (file: UploadFile) => {
+      if (!file.url && !file.preview) {
+        file.preview = await getBase64(file.originFileObj!);
+      }
+      this.previewImage = file.url || file.preview;
+      this.previewVisible = true;
+    };
+  
+    handleUploadPictureChange(info: { file: UploadFile }): void {
+      switch (info.file.status) {
+        case 'uploading':
+          break;
+        case 'done':
+          info.file.url = info.file.response.path;
+          break;
+      }
+    }
 
+    close(alert: Alert) {
+      this.alerts.splice(this.alerts.indexOf(alert), 1);
+    }
+
+    reset() {
+      this.alerts = Array.from(ALERTS);
+    }
 }

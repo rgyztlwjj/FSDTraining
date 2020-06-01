@@ -42,4 +42,5 @@ export  interface product{
     manufacturename:any;
     price:any;
     description:any;
+    pictures:string[];
 }

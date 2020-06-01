@@ -50,6 +50,7 @@
     <nz-table class="mt-4" #rowSelectionTable nzShowSizeChanger [nzData]="listOfData" [nzPageSize]="5" (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
       <thead>
         <tr>
+          <th>Img</th>
           <th>ItmeInfo</th>
           <th>Price</th>
           <th>Manufacturer</th>
@@ -60,18 +61,20 @@
       <tbody>
         <tr *ngFor="let data of rowSelectionTable.data; index as id">
           <td>
-            <img src="/assets/img/iPhone11.jpg" class="img-sty">
-            {{ data.itemname }}</td>
+            <!-- <nz-carousel [nzEffect]="effect" nzAutoPlay> -->
+            <div nz-carousel-content *ngFor="let pic of data.pictures">
+                <img class="img-sty" src="{{pic}}"  >
+            </div>
+            <!-- </nz-carousel> -->
+          </td>
+          <td>{{ data.itemname }}</td>
           <td>{{ data.price }}</td>
           <td>{{ data.manufacture.name }}</td>
           <td >
-            <!-- <p *ngIf="data.descriptions!==[]"></p> -->
             {{ data.descriptionString}} 
           </td>
           <td>
             <a class="detail-link float-right" (click)="goto(data.id)" > Details</a>
-            <!-- <a class="detail-link float-right" [routerLink]="['/products']" [queryParams]="{itemId:data.id}"> Details</a> -->
- 
           </td>
         </tr>
       </tbody>

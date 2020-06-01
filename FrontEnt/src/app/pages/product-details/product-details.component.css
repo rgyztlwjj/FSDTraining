@@ -1,10 +1,10 @@
 .left-div{
-    width: 25%;
-    height: 180px;
+    width: 300px;
+    height: 300px;
 }
 .right-div{
-    width: 72%;
-    height: 180px;
+    width: 500px;
+    height: 300px;
 }
 .title-label{
     text-align: center;
@@ -14,6 +14,6 @@
     width: 100px;
   }
 .img-sty{
-    width: 220px;
-    height: 160px;
+    width: 300px;
+    height: 300px;
 }

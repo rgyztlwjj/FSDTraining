@@ -29,3 +29,11 @@ nz-select {
     width: 44px;
     height: 32px;
   }
+.nz-carousel-content {
+  text-align: center;
+  height: 50px;
+  line-height: 40px;
+  /* background: #364d79;
+  color: #fff; */
+  overflow: hidden;
+}
