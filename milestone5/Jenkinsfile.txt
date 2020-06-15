@@ -43,5 +43,20 @@ node {
            sh "docker build -t zuul:latest ."
            sh "docker run -p 8080:8080 -d zuul"
        }
+       dir("${workspace}/MidTier/MicroService/user/target"){
+           sh "cp ${workspace}/milestone5/Dockerfile/user/Dockerfile ${workspace}/MidTier/MicroService/user/target/Dockerfile"
+           sh "docker build -t user:latest ."
+           sh "docker run -p 8081:8081 -d user"
+       }
+       dir("${workspace}/MidTier/MicroService/seller/target"){
+           sh "cp ${workspace}/milestone5/Dockerfile/seller/Dockerfile ${workspace}/MidTier/MicroService/seller/target/Dockerfile"
+           sh "docker build -t seller:latest ."
+           sh "docker run -p 8082:8082 -d seller"
+       }
+       dir("${workspace}/MidTier/MicroService/buyer/target"){
+           sh "cp ${workspace}/milestone5/Dockerfile/buyer/Dockerfile ${workspace}/MidTier/MicroService/buyer/target/Dockerfile"
+           sh "docker build -t buyer:latest ."
+           sh "docker run -p 8083:8083 -d buyer"
+       }
    }
 }
